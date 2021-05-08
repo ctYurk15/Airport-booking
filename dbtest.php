@@ -13,6 +13,7 @@
         exit();
     }
 
+    //airports
     $request = "SELECT idAirport, airport.Name AS airportName, city.Name AS cityName 
                 FROM airport 
                 JOIN city ON airport.City_Id = city.id 
@@ -39,6 +40,7 @@
     echo "</table>";
     ///
 
+    //hotels
     $request = "SELECT hotel.id AS hotelId, hotel.Name AS hotelName, city.Name AS cityName 
                 FROM hotel 
                 JOIN city ON hotel.City_Id = city.id 
@@ -65,6 +67,7 @@
     echo "</table>";
     ///
 
+    //planes
     $request = "SELECT plane.id AS planeId, plane.Name AS planeName, plane.`Count` AS planeCount, type.Name AS typeName
                 FROM plane 
                 JOIN type ON plane.Type_idType = type.idType
@@ -90,6 +93,33 @@
               </tr>";
     }
 
+    echo "</table>"; 
+
+    //users
+    $request = "SELECT * FROM `user`";
+    $result = $conn->query($request);
+
+     echo " <h1>Користувачі</h1>
+            <table border='1px'>
+            <tr>
+                <td>id</td>
+                <td>Name</td>
+                <td>Passport ID</td>
+                <td>Pass</td>
+                <td>Registration date</td>
+            </tr>";
+
+    while($row = $result->fetch_array()) //making each row a associative array
+    {
+        echo "<tr>
+                <td>{$row["id"]}</td>
+                <td>{$row["Name"]}</td>
+                <td>{$row["PassId"]}</td>
+                <td>{$row["Password"]}</td>
+                <td>{$row["RegistrationDate"]}</td>
+              </tr>";
+    }
+
     echo "</table>";
-    ///
+    
 ?>

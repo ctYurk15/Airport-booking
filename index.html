@@ -72,20 +72,20 @@
         <div id="login">   
           <h1>Welcome Back!</h1>
           
-          <form action="/" method="post">
+          <form action="phpScripts/login.php" method="post" id="loginForm">
           
             <div class="field-wrap">
             <label>
               Email Address<span class="req">*</span>
             </label>
-            <input type="email"required autocomplete="off"/>
+            <input type="email"required autocomplete="off" id="emailInpL">
           </div>
           
           <div class="field-wrap">
             <label>
               Password<span class="req">*</span>
             </label>
-            <input type="password"required autocomplete="off"/>
+            <input type="password"required autocomplete="off" id="passInpL">
           </div>
           
           <p class="forgot"><a href="#">Forgot Password?</a></p>
@@ -93,6 +93,7 @@
           <button class="button button-block">Log In</button>
           
           </form>
+          <h3 id="errorTextL" style="color: darkred"></h3>
 
         </div>
         

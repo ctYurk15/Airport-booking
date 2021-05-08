@@ -10,9 +10,8 @@
             $this->email = $email;
         }
         
-        public static function addNewUser($firstname, $lastname, $email, $pass, $conn)
+        public static function addNewUser($name, $email, $pass, $conn)
         {
-            $name = $firstname." ".$lastname;
             $conn->query("INSERT INTO `user`(Name, Password, Email) VALUES('{$name}', '{$pass}', '{$email}');");
             return true;
         }
@@ -26,6 +25,23 @@
             $count == 0 ? ($result = false) : ($result = true);
             
             return $result;
+        }
+        
+        public static function correctLogin($email, $pass, $conn)
+        {
+            $correct = false;
+            
+            if(User::strValueExists("email", $email, $conn)) //email validation
+            {
+                //password validation
+                $dbPass = $conn->query("SELECT Password FROM `user` WHERE email = '{$email}'")->fetch_array()['Password'];
+                if($dbPass == $pass)
+                {
+                    $correct = true;
+                }
+            }
+            
+            return $correct;
         }
     }
 ?>

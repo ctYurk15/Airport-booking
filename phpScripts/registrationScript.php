@@ -44,7 +44,7 @@
     {
         if(User::addNewUser($name, $email, $pass, $conn)) //if registration was correct
         {
-            echo "Registration successful.";
+            echo "Реєстрація успішна.";
         }
     }
 ?>

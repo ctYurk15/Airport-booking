@@ -1,0 +1,131 @@
+.loginDivContainer {
+	background-color: white;
+	width: 250px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	text-align: center;
+	margin-left: auto;
+    margin-right: auto;
+    margin-top: 10%;
+}
+div.field-wrap{
+	margin-top: 25px;
+}
+p.forgot{
+	margin-top: 25px;
+}
+body {
+    background: #000 url(../images/4.jpg) ;
+    -moz-background-size: 100%; /* Firefox 3.6+ */
+    -webkit-background-size: 100%; /* Safari 3.1+ и Chrome 4.0+ */
+    -o-background-size: 100%; /* Opera 9.6+ */
+    background-size: 100%
+  }
+
+
+div.registration{
+    padding-bottom: 25px;
+}
+
+div.Login{
+    padding-bottom: 25px;
+}
+button.button-block{
+    margin-top: 25px;
+}
+
+
+
+.button 
+{
+    display: inline-block;
+    padding: 0.75rem 1.25rem;
+    border-radius: 10rem;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 1rem;
+    letter-spacing: 0.15rem;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    background-color: #0cf;
+}
+/*.button:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  
+  border-radius: 10rem;
+  z-index: -2;
+}
+.button:before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background-color: #008fb3;
+  transition: all 0.3s;
+  border-radius: 10rem;
+  z-index: -1;
+}*/
+.button:hover 
+{
+    background-color: #fff;
+    color: #0cf;
+    cursor: pointer;
+}
+/*.button:hover:before {
+  width: 100%;
+}*/
+
+/* optional reset for presentation */
+* {
+  font-family: Arial;
+  text-decoration: none;
+}
+
+.container {
+  padding-top: 25px;
+  margin: 0 auto;
+  width: 100%;
+  text-align: center;
+}
+
+h1 {
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  margin-bottom: 2rem;
+  color: #777;
+  padding-top: 25px;
+}
+
+span {
+  display: block;
+  margin-top: 2rem;
+  font-size: 0.7rem;
+  color: #777;
+}
+span a {
+  font-size: 0.7rem;
+  color: #999;
+  text-decoration: underline;
+}
+
+
+/*----------------------------*/
+
+.loginDivContainer {
+  width: 250px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  text-align: center;
+}
+
+#errorText
+{
+    color: red;
+}

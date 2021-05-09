@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3307
--- Час створення: Трв 08 2021 р., 18:35
+-- Час створення: Трв 09 2021 р., 14:46
 -- Версія сервера: 10.1.44-MariaDB
 -- Версія PHP: 7.3.26
 
@@ -260,7 +260,8 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id`, `Name`, `RegistrationDate`, `PassId`, `Password`, `Email`) VALUES
 (1, 'Зубенко Михайло Петрович', '2021-05-05 08:56:18', '1111111-101010', '12345', '123@gmail.com'),
 (2, 'Іванов Іван Іванович', '2021-05-05 10:54:29', '1211111-101010', 'qwerty', '234@gmail.com'),
-(6, 'Lev Zykol', '2021-05-08 07:45:23', NULL, '123', 'levgenetic@gmail.com');
+(6, 'Lev Zykol', '2021-05-08 07:45:23', NULL, '123', 'levgenetic@gmail.com'),
+(7, 'name', '2021-05-09 11:10:14', NULL, 'pass', 'email');
 
 --
 -- Індекси збережених таблиць
@@ -373,7 +374,7 @@ ALTER TABLE `rooms`
 -- AUTO_INCREMENT для таблиці `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Обмеження зовнішнього ключа збережених таблиць

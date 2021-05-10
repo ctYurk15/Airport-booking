@@ -1,6 +1,7 @@
 <?php
     
     include 'dbconnect.php';
+    include 'generalScripts.php';
     include 'User.php';
 
     $email = htmlspecialchars($_POST['email']);
@@ -8,7 +9,7 @@
 
     if(User::correctLogin($email, $pass, $conn))
     {
-        echo "Успішний логін";
+        gotoURL("phpScripts/createCookie.php?email={$email}&page=Flights.html");
     }
     else
     {

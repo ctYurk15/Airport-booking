@@ -1,6 +1,7 @@
 <?php
     
     include 'dbconnect.php';
+    include 'generalScripts.php';
     include 'User.php';
     
     //getting registration values
@@ -44,7 +45,7 @@
     {
         if(User::addNewUser($name, $email, $pass, $conn)) //if registration was correct
         {
-            echo "Реєстрація успішна.";
+            gotoURL("phpScripts/createCookie.php?email={$email}&page=Flights.html");
         }
     }
 ?>

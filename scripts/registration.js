@@ -1,4 +1,5 @@
 $(document).ready(function(){
+    //registration
     $("#regForm").submit(function(event){
         event.preventDefault();
         
@@ -14,4 +15,7 @@ $(document).ready(function(){
             pass: pass
         });
     });
+    
+    //if user aleady is logined
+    $("#errorText").load("../phpScripts/checkCookie.php?", {setUrl: "Flights.php"});
 });

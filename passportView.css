@@ -1,0 +1,54 @@
+.infoDivContainer {
+	background-color: white;
+	width: 50%;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	text-align: center;
+	margin-left: auto;
+  margin-right: auto;
+  margin-top: 5%;
+}
+
+.inline { 
+  display: inline-block;
+  /*border: 1px solid red;*/
+  text-align: left;
+  padding: 20px;
+  min-width: 280px;
+  max-width: 280px;
+}
+
+.toCenter{
+  margin:0 auto;
+}
+
+input
+{
+  width: 130px;
+  padding: 0;
+  margin: 0;
+}
+
+.labelSize
+{
+  text-align: left;
+  display: inline-block;
+  min-width: 140px;
+}
+
+
+@media screen and (max-width: 1050px) {
+  .inline { 
+    padding: 0;
+  }
+
+  .infoDivContainer {
+    width: 70%;
+  }
+}
+
+@media screen and (max-width: 1305px) {
+
+  .infoDivContainer {
+    width: 65%;
+  }
+}

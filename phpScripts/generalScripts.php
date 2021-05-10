@@ -13,5 +13,12 @@
             <script>alert('{$msg}')</script>
         ";
     }
+
+    function print_console($msg)
+    {
+        echo "
+            <script>console.log('{$msg}')</script>
+        ";
+    }
         
 ?>

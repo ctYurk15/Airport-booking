@@ -21,6 +21,15 @@
             
             return $cities;
         }
+        
+        public function getColumn($column, $table, $id)
+        {
+            $query = "SELECT {$column} FROM {$table} WHERE id={$id}";
+            
+            $result = $this->conn->query($query)->fetch_array()[$column];
+            
+            return $result;
+        }
     }
     
 ?>

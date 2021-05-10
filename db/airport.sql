@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3307
--- Час створення: Трв 09 2021 р., 14:46
+-- Час створення: Трв 10 2021 р., 20:41
 -- Версія сервера: 10.1.44-MariaDB
 -- Версія PHP: 7.3.26
 
@@ -40,7 +40,12 @@ CREATE TABLE `airport` (
 INSERT INTO `airport` (`idAirport`, `Name`, `City_id`) VALUES
 (1, 'Airport1', 1),
 (2, 'Airport2', 2),
-(3, 'Аеропорт імені ДжоДжо', 2);
+(3, 'Аеропорт імені ДжоДжо', 2),
+(4, 'Схіпгол', 6),
+(5, 'Міжнародний аеропорт Дніпро', 7),
+(6, 'Міжнародний аеропорт Одеса', 8),
+(7, 'Міжнародний аеропорт Харків', 9),
+(8, 'Міжнародний аеропорт Дубай', 10);
 
 -- --------------------------------------------------------
 
@@ -63,7 +68,12 @@ INSERT INTO `city` (`id`, `Name`, `Country`) VALUES
 (2, 'Торонто', 'Канада'),
 (3, 'Київ', 'Україна'),
 (4, 'Варашава', 'Польща'),
-(5, 'Вроцлав', 'Польща');
+(5, 'Вроцлав', 'Польща'),
+(6, 'Амстердам', 'Нідерланди'),
+(7, 'Дніпро', 'Україна'),
+(8, 'Одеса', 'Україна'),
+(9, 'Харків', 'Україна'),
+(10, 'Дубаї', 'ОАЕ');
 
 -- --------------------------------------------------------
 
@@ -82,7 +92,12 @@ CREATE TABLE `hotel` (
 --
 
 INSERT INTO `hotel` (`id`, `Name`, `City_id`) VALUES
-(1, 'Прихисток анімешника', 1);
+(1, 'Прихисток анімешника', 1),
+(2, 'Park Plaza Victoria Amsterdam', 6),
+(3, 'Bartolomeo', 7),
+(4, 'M1 Club Hotel', 8),
+(5, 'Kharkiv Palace Hotel', 9),
+(6, 'Atlantis The Palm, Dubai', 10);
 
 -- --------------------------------------------------------
 
@@ -102,7 +117,12 @@ CREATE TABLE `plane` (
 --
 
 INSERT INTO `plane` (`id`, `Name`, `Count`, `Type_idType`) VALUES
-(1, 'Boing 747', 500, 1);
+(1, 'Boing 747', 500, 1),
+(2, 'Ан-148', 80, 1),
+(3, 'Ан-158', 99, 1),
+(4, 'Ан-180', 175, 1),
+(5, 'Bombardier Global Express', 19, 2),
+(6, 'Airbus A340', 375, 2);
 
 -- --------------------------------------------------------
 
@@ -114,16 +134,20 @@ CREATE TABLE `receipt` (
   `id` int(11) NOT NULL,
   `ReceiptNumber` int(11) NOT NULL,
   `Date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `Ticket_idTicket` int(11) NOT NULL,
-  `User_id` int(11) NOT NULL
+  `Ticket_idTicket` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Дамп даних таблиці `receipt`
 --
 
-INSERT INTO `receipt` (`id`, `ReceiptNumber`, `Date`, `Ticket_idTicket`, `User_id`) VALUES
-(1, 228228228, '2021-05-05 14:20:41', 1, 1);
+INSERT INTO `receipt` (`id`, `ReceiptNumber`, `Date`, `Ticket_idTicket`) VALUES
+(1, 228228228, '2021-05-05 14:20:41', 1),
+(2, 2, '2021-05-10 14:59:27', 2),
+(3, 3, '2021-05-10 14:59:27', 3),
+(4, 4, '2021-05-10 14:59:27', 4),
+(5, 6, '2021-05-10 14:59:27', 5),
+(6, 7, '2021-05-10 14:59:27', 6);
 
 -- --------------------------------------------------------
 
@@ -139,15 +163,22 @@ CREATE TABLE `reis` (
   `ReisTimeTo` datetime NOT NULL,
   `Plane_id` int(11) NOT NULL,
   `Airport_idAirportFrom` int(11) NOT NULL,
-  `Airport_idAirportTo` int(11) NOT NULL
+  `Airport_idAirportTo` int(11) NOT NULL,
+  `Price` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Дамп даних таблиці `reis`
 --
 
-INSERT INTO `reis` (`id`, `ReisNumber`, `ReservedCount`, `ReisTimeFrom`, `ReisTimeTo`, `Plane_id`, `Airport_idAirportFrom`, `Airport_idAirportTo`) VALUES
-(1, 1, '13', '2019-10-10 14:25:00', '2019-10-10 20:25:00', 1, 1, 2);
+INSERT INTO `reis` (`id`, `ReisNumber`, `ReservedCount`, `ReisTimeFrom`, `ReisTimeTo`, `Plane_id`, `Airport_idAirportFrom`, `Airport_idAirportTo`, `Price`) VALUES
+(1, 1, '13', '2019-10-10 14:25:00', '2019-10-10 20:25:00', 1, 1, 2, 100),
+(2, 2, '14', '2021-05-15 14:30:00', '2021-05-16 00:25:00', 2, 3, 6, 200),
+(3, 3, '50', '2021-12-13 15:25:00', '2021-12-14 01:25:00', 3, 8, 7, 300),
+(4, 4, '102', '2021-01-11 16:25:00', '2021-01-12 02:25:00', 4, 7, 2, 100),
+(5, 5, '3', '2021-11-09 17:25:00', '2021-11-10 03:25:00', 5, 7, 4, 400),
+(6, 6, '1', '2021-03-20 18:25:00', '2021-03-21 04:25:00', 6, 1, 5, 100),
+(7, 7, '14', '2021-05-09 14:30:00', '2021-05-25 00:25:00', 2, 3, 6, 15);
 
 -- --------------------------------------------------------
 
@@ -168,7 +199,12 @@ CREATE TABLE `rooms` (
 --
 
 INSERT INTO `rooms` (`idrooms`, `Hotel_id`, `Roomtype_idRoomtype`, `CountRooms`, `CountUsers`) VALUES
-(1, 1, 1, 5, 10);
+(1, 1, 1, 5, 10),
+(2, 2, 6, 4, 15),
+(3, 3, 2, 2, 6),
+(4, 4, 3, 3, 9),
+(5, 5, 5, 1, 3),
+(6, 6, 4, 5, 20);
 
 -- --------------------------------------------------------
 
@@ -198,7 +234,12 @@ CREATE TABLE `roomtype` (
 --
 
 INSERT INTO `roomtype` (`idRoomtype`, `Name`) VALUES
-(1, 'Люкс');
+(1, 'Люкс'),
+(2, 'Комфорт'),
+(3, 'Комфорт+'),
+(4, 'Президентський'),
+(5, 'Стандарт'),
+(6, 'Бізнес');
 
 -- --------------------------------------------------------
 
@@ -208,17 +249,25 @@ INSERT INTO `roomtype` (`idRoomtype`, `Name`) VALUES
 
 CREATE TABLE `ticket` (
   `idTicket` int(11) NOT NULL,
-  `Price` int(11) NOT NULL,
   `PlaceNumber` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `Reis_id1` int(11) NOT NULL
+  `Reis_id1` int(11) NOT NULL,
+  `User_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Дамп даних таблиці `ticket`
 --
 
-INSERT INTO `ticket` (`idTicket`, `Price`, `PlaceNumber`, `Reis_id1`) VALUES
-(1, 120, '15', 1);
+INSERT INTO `ticket` (`idTicket`, `PlaceNumber`, `Reis_id1`, `User_id`) VALUES
+(1, '15', 1, 1),
+(2, '70', 2, 1),
+(3, '95', 3, 1),
+(4, '143', 4, 1),
+(5, '1', 5, 1),
+(6, '1', 6, 1),
+(7, '14', 2, 6),
+(8, '50', 3, 6),
+(9, '3', 5, 6);
 
 -- --------------------------------------------------------
 
@@ -236,7 +285,8 @@ CREATE TABLE `type` (
 --
 
 INSERT INTO `type` (`idType`, `Name`) VALUES
-(1, 'Пасажирський');
+(1, 'Пасажирський'),
+(2, 'Приватний');
 
 -- --------------------------------------------------------
 
@@ -260,8 +310,13 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id`, `Name`, `RegistrationDate`, `PassId`, `Password`, `Email`) VALUES
 (1, 'Зубенко Михайло Петрович', '2021-05-05 08:56:18', '1111111-101010', '12345', '123@gmail.com'),
 (2, 'Іванов Іван Іванович', '2021-05-05 10:54:29', '1211111-101010', 'qwerty', '234@gmail.com'),
-(6, 'Lev Zykol', '2021-05-08 07:45:23', NULL, '123', 'levgenetic@gmail.com'),
-(7, 'name', '2021-05-09 11:10:14', NULL, 'pass', 'email');
+(6, 'Lev Zykol', '2021-05-08 07:45:23', '123', '123', 'levgenetic@gmail.com'),
+(7, 'name', '2021-05-09 11:10:14', NULL, 'pass', 'email'),
+(8, 'Нестор Олег', '2021-05-10 11:58:32', NULL, 'testpass8', 'testuser8@gmail.com'),
+(9, 'Брендак Владислав', '2021-05-10 11:58:32', NULL, 'testpass9', 'testuser9@gmail.com'),
+(10, 'Замєсов Юрій', '2021-05-10 11:58:32', NULL, 'testpass10', 'testuser10@gmail.com'),
+(11, 'Грицак Юрій', '2021-05-10 11:58:32', NULL, 'testpass11', 'testuser11@gmail.com'),
+(12, 'Поляков Віктор', '2021-05-10 11:58:32', NULL, 'testpass12', 'testuser12@gmail.com');
 
 --
 -- Індекси збережених таблиць
@@ -298,9 +353,8 @@ ALTER TABLE `plane`
 -- Індекси таблиці `receipt`
 --
 ALTER TABLE `receipt`
-  ADD PRIMARY KEY (`id`,`Ticket_idTicket`,`User_id`),
-  ADD KEY `fk_Receipt_Ticket1_idx` (`Ticket_idTicket`),
-  ADD KEY `fk_User_Id_idx` (`User_id`);
+  ADD PRIMARY KEY (`id`,`Ticket_idTicket`),
+  ADD KEY `fk_Receipt_Ticket1_idx` (`Ticket_idTicket`);
 
 --
 -- Індекси таблиці `reis`
@@ -338,7 +392,8 @@ ALTER TABLE `roomtype`
 --
 ALTER TABLE `ticket`
   ADD PRIMARY KEY (`idTicket`,`Reis_id1`),
-  ADD KEY `fk_Ticket_Reis1_idx` (`Reis_id1`);
+  ADD KEY `fk_Ticket_Reis1_idx` (`Reis_id1`),
+  ADD KEY `User_id_idx` (`User_id`);
 
 --
 -- Індекси таблиці `type`
@@ -362,19 +417,25 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT для таблиці `city`
 --
 ALTER TABLE `city`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT для таблиці `rooms`
 --
 ALTER TABLE `rooms`
-  MODIFY `idrooms` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idrooms` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT для таблиці `ticket`
+--
+ALTER TABLE `ticket`
+  MODIFY `idTicket` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT для таблиці `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Обмеження зовнішнього ключа збережених таблиць
@@ -399,12 +460,6 @@ ALTER TABLE `plane`
   ADD CONSTRAINT `fk_Plane_Type1` FOREIGN KEY (`Type_idType`) REFERENCES `type` (`idType`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Обмеження зовнішнього ключа таблиці `receipt`
---
-ALTER TABLE `receipt`
-  ADD CONSTRAINT `fk_User_Id` FOREIGN KEY (`User_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
 -- Обмеження зовнішнього ключа таблиці `reis`
 --
 ALTER TABLE `reis`
@@ -423,6 +478,12 @@ ALTER TABLE `rooms`
 ALTER TABLE `rooms_has_user`
   ADD CONSTRAINT `fk_rooms_has_User_UserID` FOREIGN KEY (`User_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_rooms_has_User_rooms1` FOREIGN KEY (`rooms_idrooms`,`rooms_Hotel_id`) REFERENCES `rooms` (`idrooms`, `Hotel_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Обмеження зовнішнього ключа таблиці `ticket`
+--
+ALTER TABLE `ticket`
+  ADD CONSTRAINT `User_id` FOREIGN KEY (`User_id`) REFERENCES `user` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

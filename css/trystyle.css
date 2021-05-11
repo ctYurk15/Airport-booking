@@ -46,7 +46,7 @@ nav
 
 .button
 {
-    width: 30%;
+    width: 25%;
     border: 0;
     background-color: #FFCD08;
     color: #006CA6;
@@ -59,7 +59,7 @@ nav
 
 .button:hover
 {
-    width: 30%;
+    width: 25%;
     border: 0;
     background-color: #FFD900;
     color: #006CA6;

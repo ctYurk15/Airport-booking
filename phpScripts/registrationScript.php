@@ -45,7 +45,7 @@
     {
         if(User::addNewUser($name, $email, $pass, $conn)) //if registration was correct
         {
-            gotoURL("phpScripts/createCookie.php?email={$email}&page=Flights.html");
+            gotoURL("phpScripts/createCookie.php?email={$email}&page=Flights.php");
         }
     }
 ?>

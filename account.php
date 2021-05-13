@@ -77,7 +77,7 @@
                   First Name
                 </label>
               </div>
-              <input type="text" required autocomplete="off" />
+              <input type="text" required autocomplete="off" id='firstname'>
             </div>
             <div class="field-wrap ">
               <div class="labelSize">
@@ -85,7 +85,7 @@
                   Second Name
                 </label>
               </div>
-              <input type="text" required autocomplete="off" />
+              <input type="text" required autocomplete="off"  id='firstname'>
             </div>
             <div class="field-wrap ">
               <div class="labelSize">

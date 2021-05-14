@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3307
--- Час створення: Трв 10 2021 р., 20:41
+-- Час створення: Трв 14 2021 р., 12:04
 -- Версія сервера: 10.1.44-MariaDB
 -- Версія PHP: 7.3.26
 
@@ -98,6 +98,31 @@ INSERT INTO `hotel` (`id`, `Name`, `City_id`) VALUES
 (4, 'M1 Club Hotel', 8),
 (5, 'Kharkiv Palace Hotel', 9),
 (6, 'Atlantis The Palm, Dubai', 10);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `passport_request`
+--
+
+CREATE TABLE `passport_request` (
+  `id` int(11) NOT NULL,
+  `User_id` int(11) NOT NULL,
+  `Name` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Sex` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `PassID` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `BirthDate` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `InterPass` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп даних таблиці `passport_request`
+--
+
+INSERT INTO `passport_request` (`id`, `User_id`, `Name`, `Sex`, `PassID`, `BirthDate`, `InterPass`) VALUES
+(1, 6, 'jojo', 'male', '123-123', '30.08.2003', 'lll-000'),
+(2, 6, 'Lev Zykol', 'Male', '', '2', '2'),
+(3, 6, 'Lev Zykol', 'Male', '1', '2', '2');
 
 -- --------------------------------------------------------
 
@@ -265,9 +290,7 @@ INSERT INTO `ticket` (`idTicket`, `PlaceNumber`, `Reis_id1`, `User_id`) VALUES
 (4, '143', 4, 1),
 (5, '1', 5, 1),
 (6, '1', 6, 1),
-(7, '14', 2, 6),
-(8, '50', 3, 6),
-(9, '3', 5, 6);
+(10, '14', 2, 2);
 
 -- --------------------------------------------------------
 
@@ -310,13 +333,16 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id`, `Name`, `RegistrationDate`, `PassId`, `Password`, `Email`) VALUES
 (1, 'Зубенко Михайло Петрович', '2021-05-05 08:56:18', '1111111-101010', '12345', '123@gmail.com'),
 (2, 'Іванов Іван Іванович', '2021-05-05 10:54:29', '1211111-101010', 'qwerty', '234@gmail.com'),
-(6, 'Lev Zykol', '2021-05-08 07:45:23', '123', '123', 'levgenetic@gmail.com'),
+(6, 'Lev Zykol', '2021-05-08 07:45:23', NULL, '123', 'levgenetic@gmail.com'),
 (7, 'name', '2021-05-09 11:10:14', NULL, 'pass', 'email'),
 (8, 'Нестор Олег', '2021-05-10 11:58:32', NULL, 'testpass8', 'testuser8@gmail.com'),
 (9, 'Брендак Владислав', '2021-05-10 11:58:32', NULL, 'testpass9', 'testuser9@gmail.com'),
 (10, 'Замєсов Юрій', '2021-05-10 11:58:32', NULL, 'testpass10', 'testuser10@gmail.com'),
 (11, 'Грицак Юрій', '2021-05-10 11:58:32', NULL, 'testpass11', 'testuser11@gmail.com'),
-(12, 'Поляков Віктор', '2021-05-10 11:58:32', NULL, 'testpass12', 'testuser12@gmail.com');
+(12, 'Поляков Віктор', '2021-05-10 11:58:32', NULL, 'testpass12', 'testuser12@gmail.com'),
+(13, 'Lev45 Zykol', '2021-05-11 09:13:56', NULL, 'qwerty', 'levgenbanetic@gmail.com'),
+(14, '1 2', '2021-05-11 09:26:52', NULL, '89', '2@meta.ua'),
+(15, 'Lev Zykolllll', '2021-05-11 09:32:24', NULL, '678', 'email@meta.ua');
 
 --
 -- Індекси збережених таблиць
@@ -341,6 +367,13 @@ ALTER TABLE `city`
 ALTER TABLE `hotel`
   ADD PRIMARY KEY (`id`,`City_id`),
   ADD KEY `fk_Hotel_City1_idx` (`City_id`);
+
+--
+-- Індекси таблиці `passport_request`
+--
+ALTER TABLE `passport_request`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_User_id` (`User_id`);
 
 --
 -- Індекси таблиці `plane`
@@ -420,6 +453,12 @@ ALTER TABLE `city`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
+-- AUTO_INCREMENT для таблиці `passport_request`
+--
+ALTER TABLE `passport_request`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT для таблиці `rooms`
 --
 ALTER TABLE `rooms`
@@ -429,13 +468,13 @@ ALTER TABLE `rooms`
 -- AUTO_INCREMENT для таблиці `ticket`
 --
 ALTER TABLE `ticket`
-  MODIFY `idTicket` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `idTicket` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT для таблиці `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Обмеження зовнішнього ключа збережених таблиць
@@ -452,6 +491,12 @@ ALTER TABLE `airport`
 --
 ALTER TABLE `hotel`
   ADD CONSTRAINT `fk_Hotel_City1` FOREIGN KEY (`City_id`) REFERENCES `city` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Обмеження зовнішнього ключа таблиці `passport_request`
+--
+ALTER TABLE `passport_request`
+  ADD CONSTRAINT `fk_User_id` FOREIGN KEY (`User_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Обмеження зовнішнього ключа таблиці `plane`

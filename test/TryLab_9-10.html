@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="trystyle.css">
+    <title>test</title>
+</head>
+<body>
+    <header>
+        <div>
+            <nav>
+                <div>
+                <ul class="nav-links">
+                    <li>
+                        <img src="Mylogo(3).png"  width="100px" height="25px" alt="FlyCompany">
+                    </li>
+                    <li>
+                        <a href="#"> Домашня сторінка </a>
+                    </li>
+                    <li>
+                       <a href="#"> Бронювання </a>
+                    </li>
+                    <li>
+                        <a href="#"> Приватні літаки </a>
+                       </li>
+                    <li>
+                        <a href="#"> Інформація </a>
+                    </li>                          
+                </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+<hr>
+<h1>Табло вильоту і прильоту</h1>
+<div class="row">
+    <div class="fromToDate">
+        <label for="airport">ЗВІДКИ *</label><br>
+        <select>
+            <option value="DNK" data-uniqid="selectbox0-0">Дніпро</option>
+            <option value="KBP" data-uniqid="selectbox0-1">Київ</option>
+            <option value="LWO" data-uniqid="selectbox0-2">Львів</option>
+        </select>
+    </div>
+
+    <div class="fromToDate">
+        <label for="from_to">КУДИ *</label><br>
+        <select>
+            <option value="AMS" data-uniqid="selectbox1-0">Амстердам</option>
+            <option value="DXB" data-uniqid="selectbox1-1">Дубай</option>
+            <option value="MXP" data-uniqid="selectbox1-2">Мілан</option>
+        </select>
+    </div>
+
+    <div class="fromToDate">
+        <label for="airport">ДАТА ВИЛЬОТУ *</label><br>
+        <select>
+            <option value="today" data-uniqid="selectbox2-0">Сьогодні</option>
+            <option value="tomorrow" data-uniqid="selectbox2-1">Завтра</option>
+            <option value="11.05.21" data-uniqid="selectbox2-2">11.05.21</option>
+            <option value="12.05.21" data-uniqid="selectbox2-3">12.05.21</option>
+        </select>
+    </div>
+    <div class="show_button">
+        <button type="button">ПОКАЗАТИ</button>
+    </div>
+</div>
+
+<div class="depart">
+    <div class="text-center">
+        <i>ВИЛІТ</i>
+    </div>
+    <table class="dpt">
+        <thead>
+            <tr class="optr">
+                <th class="opth">МАРШРУТ</th>
+                <th class="opth">РЕЙС №</th>
+                <th class="opth">ЧАС ЗА РОЗКЛАДОМ</th>
+                <th class="opth">ОЧІКУЄТЬСЯ</th>
+                <th class="opth">ФАКТИЧНИЙ ЧАС</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="#">
+                <th>Київ - Амстердам</th>
+                <th>PS102</th>
+                <th>13:00</th>
+                <th>13:02</th>
+                <th>13:02</th>
+            </tr>
+            <tr class="#">
+                <th>Київ - Амстердам</th>
+                <th>PS102</th>
+                <th>13:00</th>
+                <th>13:02</th>
+                <th>13:02</th>
+            </tr>
+            <tr class="#">
+                <th>Київ - Амстердам</th>
+                <th>PS102</th>
+                <th>13:00</th>
+                <th>13:02</th>
+                <th>13:02</th>
+            </tr>
+            <tr class="#">
+                <th>Київ - Амстердам</th>
+                <th>PS102</th>
+                <th>13:00</th>
+                <th>13:02</th>
+                <th>13:02</th>
+            </tr>
+            <tr class="#">
+                <th>Київ - Амстердам</th>
+                <th>PS102</th>
+                <th>13:00</th>
+                <th>13:02</th>
+                <th>13:02</th>
+            </tr>
+            <tr class="#">
+                <th>Київ - Амстердам</th>
+                <th>PS102</th>
+                <th>13:00</th>
+                <th>13:02</th>
+                <th>13:02</th>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="arrival">
+    <div class="text-center">
+        <i>ПРИЛІТ</i>
+    </div>
+    <table class="arrt">
+        <thead>
+            <tr class="optr">
+                <th class="opth">МАРШРУТ</th>
+                <th class="opth">РЕЙС №</th>
+                <th class="opth">ЧАС ЗА РОЗКЛАДОМ</th>
+                <th class="opth">ОЧІКУЄТЬСЯ</th>
+                <th class="opth">ФАКТИЧНИЙ ЧАС</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="#">
+                <th>Амстердам - Київ</th>
+                <th>PS102</th>
+                <th>16:45</th>
+                <th>16:46</th>
+                <th>16:46</th>
+            </tr>
+            <tr class="#">
+                <th>Амстердам - Київ</th>
+                <th>PS102</th>
+                <th>16:45</th>
+                <th>16:46</th>
+                <th>16:46</th>
+            </tr>
+            <tr class="#">
+                <th>Амстердам - Київ</th>
+                <th>PS102</th>
+                <th>16:45</th>
+                <th>16:46</th>
+                <th>16:46</th>
+            </tr>
+            <tr class="#">
+                <th>Амстердам - Київ</th>
+                <th>PS102</th>
+                <th>16:45</th>
+                <th>16:46</th>
+                <th>16:46</th>
+            </tr>
+            <tr class="#">
+                <th>Амстердам - Київ</th>
+                <th>PS102</th>
+                <th>16:45</th>
+                <th>16:46</th>
+                <th>16:46</th>
+            </tr>
+            <tr class="#">
+                <th>Амстердам - Київ</th>
+                <th>PS102</th>
+                <th>16:45</th>
+                <th>16:46</th>
+                <th>16:46</th>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

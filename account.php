@@ -34,7 +34,7 @@
                     <div class="collapse navbar-collapse" id="navcol-1">
                         <ul class="nav navbar-nav">
                             <li role="presentation"><a class="vlad" href="Flights.php">Купити квитки</a></li>
-                            <li role="presentation"><a class="vlad" href="#">Орендувати готель</a></li>
+                            <li role="presentation"><a class="vlad" href="hotels.php">Орендувати готель</a></li>
                             <li role="presentation"><a class="vlad" href="#">Приватні рейси</a></li>
                             <li role="presentation"><a class="vlad" href="#">Аккаунт</a></li>
                         </ul>
@@ -68,7 +68,7 @@
     
     <div class="infoDivContainer">
       <h1>Passport Info</h1>
-      <form action="/" method="post">
+      <form action="/" method="post" id='passIdForm'>
         <div class="toCenter">
           <div class="inline">
             <div class="field-wrap ">
@@ -77,7 +77,7 @@
                   First Name
                 </label>
               </div>
-              <input type="text" required autocomplete="off" />
+              <input type="text" required autocomplete="off" id='firstname'>
             </div>
             <div class="field-wrap ">
               <div class="labelSize">
@@ -85,7 +85,7 @@
                   Second Name
                 </label>
               </div>
-              <input type="text" required autocomplete="off" />
+              <input type="text" required autocomplete="off" id='lastname'>
             </div>
             <div class="field-wrap ">
               <div class="labelSize">
@@ -93,20 +93,20 @@
                   Sex
                 </label>
               </div>
-              <select>
+              <select id='sex'>
                   <option>Male</option>
                   <option>Female</option>
                 </select>
             </div>
           </div>
           <div class="inline">
-            <div class="field-wrap ">
+            <div class="field-wrap">
               <div class="labelSize">
                 <label>
                   Passport ID
                 </label>
               </div>
-              <input type="text"required autocomplete="off"/>
+              <input type="text"required autocomplete="off" id='passId'>
             </div>
             <div class="field-wrap ">
               <div class="labelSize">
@@ -114,31 +114,27 @@
                   Date of birth
                 </label>
               </div>
-              <input type="text" required autocomplete="off" />
+              <input type="text" required autocomplete="off" id='birthDate'>
             </div>
             <div class="field-wrap ">
-              <div class="labelSize">
-                <label>
-                  E-Mail
-                </label>
-              </div>
-              <input type="text" required autocomplete="off" />
-            </div>
-          </div>
-          <div class="field-wrap ">
             <div class="labelSize">
               <label>
                 Inter. Passport
               </label>
             </div>
-            <input type="text" required autocomplete="off" />
+            <input type="text" required autocomplete="off" id='interPassId'>
           </div>
+          </div>
+          
         </div>
         <div>
           <button type="submit" class="button button-block">Відправити</button>
+         
         </div>
       </form>
+       
     </div>
+    <h3 id='errorText'></h3>
     
     <footer id="footer">
         <div class="copy-bottom-txt text-center py-3">
@@ -155,7 +151,7 @@
 </body>
 
 <script src="scripts/jquery.js"></script>
-<script src="scripts/flights.js"></script>
+<script src="scripts/account.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://use.fontawesome.com/df966d76e1.js"></script>
 

@@ -6,6 +6,7 @@
     $dbgeneral = new DBgeneral($conn);
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +17,7 @@
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/main.css">
-    <title>Рейси</title>
+    <title>Орендувати готельний номер</title>
 </head>
 <body>
     <header>
@@ -27,8 +28,8 @@
                     </div>
                     <div class="collapse navbar-collapse" id="navcol-1">
                         <ul class="nav navbar-nav">
-                            <li role="presentation"><a class="vlad" href="#">Купити квитки</a></li>
-                            <li role="presentation"><a class="vlad" href="hotels.php">Орендувати готель</a></li>
+                            <li role="presentation"><a class="vlad" href="Flights.php">Купити квитки</a></li>
+                            <li role="presentation"><a class="vlad" href="#">Орендувати готель</a></li>
                             <li role="presentation"><a class="vlad" href="#">Приватні рейси</a></li>
                             <li role="presentation"><a class="vlad" href="account.php">Аккаунт</a></li>
                         </ul>
@@ -39,100 +40,69 @@
             </nav>
         </div>
     </header>
-    <h1>Табло вильоту і прильоту</h1>
-    <form action="/" method="post" id='filterForm'>
-        <div class="row">
+    <h1>Готелі</h1>
+    
+    <div class="row">
+        <form action="/" method="post" id='filtersForm'>
             <div class="fromToDate">
-                <label for="airport">ЗВІДКИ *</label><br>
-                <select id='fromCity'>
+                <label for="from_to">ГОТЕЛЬ *</label><br>
+                <select id='hotel'>
                     <?php
 
-                        $result = $dbgeneral->getAllCities();
+                        $result = $dbgeneral->getAllHotels();
 
                         for($i = 0; $i < count($result); $i++)
                         {
                             $cityName = $result[$i]['cityName'];
-                            echo "<option value='{$cityName}'>{$cityName}</option>";
+                            $hotelName = $result[$i]['hotelName'];
+                            echo "<option value='{$hotelName}'>{$hotelName} - {$cityName}</option>";
                         }
 
                     ?>
-                    <option value='null' selected>Будь-де</option>
                 </select>
             </div>
 
             <div class="fromToDate">
-                <label for="from_to">КУДИ *</label><br>
-                <select id='toCity'>
+                <label for="airport">КЛАС КІМНАТИ *</label><br>
+                <select id='class'>
                     <?php
 
-                        $result = $dbgeneral->getAllCities();
+                        $result = $dbgeneral->getRoomTypes();
 
                         for($i = 0; $i < count($result); $i++)
                         {
-                            $cityName = $result[$i]['cityName'];
-                            echo "<option value='{$cityName}'>{$cityName}</option>";
+                            $roomtypeName = $result[$i]['roomtypeName'];
+                            echo "<option value='{$roomtypeName}'>{$roomtypeName}</option>";
                         }
 
                     ?>
-                    <option value='null' selected>Будь-куди</option>
                 </select>
             </div>
-
-            <div class="fromToDate">
-                <label for="airport">ДАТА ВИЛЬОТУ *</label><br>
-                <select id='time'>
-                    <option value="today" data-uniqid="selectbox2-0">Будь-коли</option>
-                    <option value="tomorrow" data-uniqid="selectbox2-1">Завтра</option>
-                    <option value="11.05.21" data-uniqid="selectbox2-2">11.05.21</option>
-                    <option value="12.05.21" data-uniqid="selectbox2-3">12.05.21</option>
-                </select>
+            <div class="show_button">
+                <input type='submit' class='button' value='Показати'>
             </div>
-            
-        </div>
-        <input type='submit' class='button' value='Показати'>
-    </form><br>
+        </form>
+    </div>
 
     <div class="depart">
-        <div class="text-center">
-            <i>ВИЛІТ</i>
-        </div>
         <table class="dpt">
             <thead>
                 <tr class="optr">
-                    <th class="opth buyTicket">МАРШРУТ</th>
-                    <th class="opth">РЕЙС №</th>
-                    <th class="opth">ЧАС ЗА РОЗКЛАДОМ</th>
-                    <th class="opth">ОЧІКУЄТЬСЯ</th>
-                    <th class="opth">ФАКТИЧНИЙ ЧАС</th>
-                    <th class="opth">КУПИТИ КВИТОК</th>
+                    <th class="opth">МІСТО</th>
+                    <th class="opth">ГОТЕЛЬ</th>
+                    <th class="opth">КЛАС</th>
+                    <th class="opth">КІМНАТ</th>
+                    <th class="opth">МІСТКІСТЬ</th>
+                    <th class="opth"></th>
                 </tr>
             </thead>
-            <tbody id='availableFlights'>
-                
-            </tbody>
-        </table>
-        <h3 id='errorText'></h3>
-    </div>
-
-    <div class="arrival">
-        <div class="text-center">
-            <i>ПРИЛІТ</i>
-        </div>
-        <table class="arrt">
-            <thead>
-                <tr class="optr">
-                    <th class="opth">МАРШРУТ</th>
-                    <th class="opth">РЕЙС №</th>
-                    <th class="opth">ЧАС ЗА РОЗКЛАДОМ</th>
-                    <th class="opth">ОЧІКУЄТЬСЯ</th>
-                    <th class="opth">ФАКТИЧНИЙ ЧАС</th>
-                </tr>
-            </thead>
-            <tbody id='inAirFlights'>
+            <tbody id='rooms'>
                 
             </tbody>
         </table>
     </div>
+    
+    <h3 id='errorText'></h3>
     
     <footer id="footer">
         <div class="copy-bottom-txt text-center py-3">
@@ -149,7 +119,7 @@
 </body>
 
 <script src="scripts/jquery.js"></script>
-<script src="scripts/flights.js"></script>
+<script src="scripts/hotels.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://use.fontawesome.com/df966d76e1.js"></script>
 

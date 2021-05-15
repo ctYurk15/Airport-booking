@@ -87,9 +87,9 @@
             return $roomTypes;
         }
         
-        public function getColumn($column, $table, $id)
+        public function getColumn($column, $table, $idfield ,$id)
         {
-            $query = "SELECT {$column} FROM {$table} WHERE id={$id}";
+            $query = "SELECT {$column} FROM {$table} WHERE {$idfield}={$id}";
             
             $result = $this->conn->query($query)->fetch_array()[$column];
             

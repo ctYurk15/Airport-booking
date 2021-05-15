@@ -3,6 +3,7 @@
     include 'dbconnect.php';
     include 'PassportRequest.php';
     include 'User.php';
+    include 'DBgeneral.php';
 
     $firstname = htmlspecialchars($_POST['firstname']);
     $lastname = htmlspecialchars($_POST['lastname']);
@@ -10,6 +11,11 @@
     $passId = htmlspecialchars($_POST['passId']);
     $dateOfBirth = htmlspecialchars($_POST['dateOfBirth']);
     $interPassId = htmlspecialchars($_POST['interPassId']);
+
+    $user = new User($conn, $_COOKIE['email']);
+    $dbgeneral = new DBgeneral($conn);
+
+    $userID = $user->getColumn('id');
 
     $error = false;
 
@@ -19,10 +25,14 @@
         $error = true;
     }
 
+    if($dbgeneral->getColumn('id', 'passport_request', 'User_Id', $userID) != null)
+    {
+        echo "У вас уже є запит.";
+        $error = true;
+    }
+
     if(!$error) //if all were correct
     {
-        $user = new User($conn, $_COOKIE['email']);
-        $userID = $user->getColumn('id');
         $name = $firstname." ".$lastname;
         
         PassportRequest::addNewRequest($conn, $name, $sex, $passId, $dateOfBirth, $interPassID, $userID);

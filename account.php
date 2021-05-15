@@ -2,13 +2,30 @@
     include 'phpScripts/dbconnect.php';
     include 'phpScripts/generalScripts.php';
     include 'phpScripts/User.php';
-
-    $user = new User($conn, $_COOKIE['email']);
+    include 'phpScripts/DBgeneral.php';
 
     if(!isset($_COOKIE['email'])) //if user already logined
     {
         gotoURL("../index.html"); 
     }
+
+    $user = new User($conn, $_COOKIE['email']);
+    $dbgeneral = new DBgeneral($conn);
+
+    $userID = $user->getColumn('id');
+    $class = "";
+
+    if($dbgeneral->getColumn('id', 'passport_request', 'User_Id', $userID) != null) //if we don`t need passport request
+    {
+        $class = "hidden";
+    }
+
+    /*if($class == "hidden") //displaying passport status
+    {
+        
+    }*/
+
+    
 ?>
 
 <!DOCTYPE html>
@@ -22,7 +39,7 @@
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/passportView.css">
-    <title>Рейси</title>
+    <title>Аккаунт</title>
 </head>
 <body>
     <header>
@@ -66,7 +83,7 @@
     
     </table>
     
-    <div class="infoDivContainer">
+    <div class="infoDivContainer <?= $class ?>">
       <h1>Passport Info</h1>
       <form action="/" method="post" id='passIdForm'>
         <div class="toCenter">

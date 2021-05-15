@@ -12,7 +12,7 @@
         if(!$user->isColumnNull('PassId')) //checking if passport set
         {
             $reisID = $_POST['reisID'];
-            $place = $dbGeneral->getColumn('ReservedCount', 'reis', $reisID);
+            $place = $dbGeneral->getColumn('ReservedCount', 'reis', 'id', $reisID);
             
             $user->purchaseTicket($reisID, $place);
             echo "Квиток на рейс PS10{$reisID} успішно куплено";

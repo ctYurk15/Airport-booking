@@ -1,1 +1,5 @@
 123.gif
+.env
+bootstrap/
+storage/
+vendor/

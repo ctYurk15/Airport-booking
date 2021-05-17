@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3307
--- Час створення: Трв 14 2021 р., 12:04
+-- Час створення: Трв 17 2021 р., 18:24
 -- Версія сервера: 10.1.44-MariaDB
 -- Версія PHP: 7.3.26
 
@@ -112,17 +112,17 @@ CREATE TABLE `passport_request` (
   `Sex` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
   `PassID` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
   `BirthDate` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `InterPass` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL
+  `InterPass` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Confirmed` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Дамп даних таблиці `passport_request`
 --
 
-INSERT INTO `passport_request` (`id`, `User_id`, `Name`, `Sex`, `PassID`, `BirthDate`, `InterPass`) VALUES
-(1, 6, 'jojo', 'male', '123-123', '30.08.2003', 'lll-000'),
-(2, 6, 'Lev Zykol', 'Male', '', '2', '2'),
-(3, 6, 'Lev Zykol', 'Male', '1', '2', '2');
+INSERT INTO `passport_request` (`id`, `User_id`, `Name`, `Sex`, `PassID`, `BirthDate`, `InterPass`, `Confirmed`) VALUES
+(1, 1, 'jojo', 'male', '123-123', '2', 'lll-000', NULL),
+(11, 6, 'Lev Zykol', 'Male', '12345', '12.13.14', '15.0-1501AB', 1);
 
 -- --------------------------------------------------------
 
@@ -197,13 +197,13 @@ CREATE TABLE `reis` (
 --
 
 INSERT INTO `reis` (`id`, `ReisNumber`, `ReservedCount`, `ReisTimeFrom`, `ReisTimeTo`, `Plane_id`, `Airport_idAirportFrom`, `Airport_idAirportTo`, `Price`) VALUES
+(1, 1, '1', '2021-05-09 14:30:00', '2021-05-09 14:30:00', 1, 1, 1, 1),
 (1, 1, '13', '2019-10-10 14:25:00', '2019-10-10 20:25:00', 1, 1, 2, 100),
 (2, 2, '14', '2021-05-15 14:30:00', '2021-05-16 00:25:00', 2, 3, 6, 200),
 (3, 3, '50', '2021-12-13 15:25:00', '2021-12-14 01:25:00', 3, 8, 7, 300),
 (4, 4, '102', '2021-01-11 16:25:00', '2021-01-12 02:25:00', 4, 7, 2, 100),
 (5, 5, '3', '2021-11-09 17:25:00', '2021-11-10 03:25:00', 5, 7, 4, 400),
-(6, 6, '1', '2021-03-20 18:25:00', '2021-03-21 04:25:00', 6, 1, 5, 100),
-(7, 7, '14', '2021-05-09 14:30:00', '2021-05-25 00:25:00', 2, 3, 6, 15);
+(6, 6, '1', '2021-03-20 18:25:00', '2021-03-21 04:25:00', 6, 1, 5, 100);
 
 -- --------------------------------------------------------
 
@@ -290,7 +290,8 @@ INSERT INTO `ticket` (`idTicket`, `PlaceNumber`, `Reis_id1`, `User_id`) VALUES
 (4, '143', 4, 1),
 (5, '1', 5, 1),
 (6, '1', 6, 1),
-(10, '14', 2, 2);
+(10, '14', 2, 2),
+(11, '50', 3, 6);
 
 -- --------------------------------------------------------
 
@@ -331,9 +332,9 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `Name`, `RegistrationDate`, `PassId`, `Password`, `Email`) VALUES
-(1, 'Зубенко Михайло Петрович', '2021-05-05 08:56:18', '1111111-101010', '12345', '123@gmail.com'),
+(1, 'Зубенко Михайло Петрович', '2021-05-05 08:56:18', '123-123', '12345', '123@gmail.com'),
 (2, 'Іванов Іван Іванович', '2021-05-05 10:54:29', '1211111-101010', 'qwerty', '234@gmail.com'),
-(6, 'Lev Zykol', '2021-05-08 07:45:23', NULL, '123', 'levgenetic@gmail.com'),
+(6, 'Lev Zykol', '2021-05-08 07:45:23', '12345', '123', 'levgenetic@gmail.com'),
 (7, 'name', '2021-05-09 11:10:14', NULL, 'pass', 'email'),
 (8, 'Нестор Олег', '2021-05-10 11:58:32', NULL, 'testpass8', 'testuser8@gmail.com'),
 (9, 'Брендак Владислав', '2021-05-10 11:58:32', NULL, 'testpass9', 'testuser9@gmail.com'),
@@ -373,7 +374,7 @@ ALTER TABLE `hotel`
 --
 ALTER TABLE `passport_request`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_User_id` (`User_id`);
+  ADD UNIQUE KEY `User_id_UNIQUE` (`User_id`);
 
 --
 -- Індекси таблиці `plane`
@@ -456,7 +457,7 @@ ALTER TABLE `city`
 -- AUTO_INCREMENT для таблиці `passport_request`
 --
 ALTER TABLE `passport_request`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT для таблиці `rooms`
@@ -468,7 +469,7 @@ ALTER TABLE `rooms`
 -- AUTO_INCREMENT для таблиці `ticket`
 --
 ALTER TABLE `ticket`
-  MODIFY `idTicket` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `idTicket` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT для таблиці `user`
@@ -521,8 +522,7 @@ ALTER TABLE `rooms`
 -- Обмеження зовнішнього ключа таблиці `rooms_has_user`
 --
 ALTER TABLE `rooms_has_user`
-  ADD CONSTRAINT `fk_rooms_has_User_UserID` FOREIGN KEY (`User_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_rooms_has_User_rooms1` FOREIGN KEY (`rooms_idrooms`,`rooms_Hotel_id`) REFERENCES `rooms` (`idrooms`, `Hotel_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_rooms_has_User_UserID` FOREIGN KEY (`User_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Обмеження зовнішнього ключа таблиці `ticket`

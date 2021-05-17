@@ -13,19 +13,30 @@
     $dbgeneral = new DBgeneral($conn);
 
     $userID = $user->getColumn('id');
+
     $class = "";
+    $Confirmed = $dbgeneral->getColumn('Confirmed', 'passport_request', 'User_Id', $userID);
+    $status = "";
 
     if($dbgeneral->getColumn('id', 'passport_request', 'User_Id', $userID) != null) //if we don`t need passport request
     {
         $class = "hidden";
     }
-
-    /*if($class == "hidden") //displaying passport status
-    {
-        
-    }*/
-
     
+    if($Confirmed == null) //if request is still processing
+    {
+        $status = "Ваш запит все ще обробляється. Будь ласка, зачекайте";
+    }
+    else if($Confirmed) //if account is verified
+    {
+        $passId = $dbgeneral->getColumn('PassId', '`user`', 'id', $userID);
+        $status = "Ваш аккаунт успішно верифіковано.<br> Ваш паспорт - {$passId}";
+    }
+    else if(!$Confirmed) //if something went wrong
+    {
+        $status = "Ваші дані були введені невірно. Введіть їх будь ласка заново";
+        $class = "";
+    }
 ?>
 
 <!DOCTYPE html>
@@ -63,12 +74,13 @@
         </div>
     </header>
     <a href="phpScripts/unloginScript.php">Вийти з аккаунту</a>
+    <h1>Квитки</h1>
     <table border='1px'>
         <tr>
-            <td>Reis</td>
-            <td>Place</td>
+            <td>Номер рейсу</td>
+            <td>Місце</td>
         </tr>
-    
+
     <?php
         $allTickets = $user->getTicketsPurchased();
 
@@ -80,7 +92,27 @@
                     </tr>"; 
         }
     ?>
-    
+
+    </table>
+    <h1>Готелі</h1>
+    <table border='1px'>
+        <tr>
+            <td>Номер рейсу</td>
+            <td>Місце</td>
+        </tr>
+
+    <?php
+        $allTickets = $user->getTicketsPurchased();
+
+        for($i = 0; $i < count($allTickets); $i++)
+        {
+            echo "  <tr>
+                        <td>PS10{$allTickets[$i]['Reis_id1']}</td>
+                        <td>{$allTickets[$i]['PlaceNumber']}</td>
+                    </tr>"; 
+        }
+    ?>
+
     </table>
     
     <div class="infoDivContainer <?= $class ?>">
@@ -151,6 +183,7 @@
       </form>
        
     </div>
+    <h2 id='statusText'><?= $status ?></h2>
     <h3 id='errorText'></h3>
     
     <footer id="footer">

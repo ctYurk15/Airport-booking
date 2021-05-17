@@ -18,6 +18,7 @@
     $userID = $user->getColumn('id');
 
     $error = false;
+    $replacing = false;
 
     if(empty($firstname) || empty($lastname) || empty($sex) || empty($passId) || empty($dateOfBirth) || empty($interPassId))
     {
@@ -25,17 +26,22 @@
         $error = true;
     }
 
-    if($dbgeneral->getColumn('id', 'passport_request', 'User_Id', $userID) != null)
+    if($dbgeneral->getColumn('id', 'passport_request', 'User_Id', $userID) != null) //replacing previous request
     {
-        echo "У вас уже є запит.";
-        $error = true;
+        $replacing = true;
     }
 
     if(!$error) //if all were correct
     {
         $name = $firstname." ".$lastname;
         
-        PassportRequest::addNewRequest($conn, $name, $sex, $passId, $dateOfBirth, $interPassID, $userID);
-        echo "Запит успішно відправлено. Чекайте відповіді у наближчий час.";
+        if(PassportRequest::addNewRequest($conn, $name, $sex, $passId, $dateOfBirth, $interPassId, $userID, $replacing))
+        {
+            echo "Запит успішно відправлено. Чекайте відповіді у наближчий час.";
+        }
+        else
+        {
+            echo "Упс! Сталася помилка. Спробуйте ще раз пізніше.";
+        }
     }
 ?>

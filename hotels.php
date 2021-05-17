@@ -4,6 +4,11 @@
     include 'phpScripts/DBgeneral.php';
 
     $dbgeneral = new DBgeneral($conn);
+
+    if(!isset($_COOKIE['email'])) //if user already logined
+    {
+        gotoURL("../index.html"); 
+    }
 ?>
 
 

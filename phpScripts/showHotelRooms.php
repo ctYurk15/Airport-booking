@@ -17,15 +17,6 @@
     {
         $rooms = $dbgeneral->getRooms($hotel, $class);
     }
-
-   /* echo "  <tr class='#'>
-                <th>Київ</th>
-                <th>{$hotel}</th>
-                <th>{$class}</th>
-                <th>13</th>
-                <th>13</th>
-                <th><button>Замовити</button></th>
-            </tr>";*/
         
     for($i = 0; $i < count($rooms); $i++)
     {

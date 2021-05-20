@@ -75,44 +75,18 @@
     </header>
     <a href="phpScripts/unloginScript.php">Вийти з аккаунту</a>
     <h1>Квитки</h1>
-    <table border='1px'>
+    <table border='1px' id='ticketsTable'>
         <tr>
             <td>Номер рейсу</td>
             <td>Місце</td>
         </tr>
-
-    <?php
-        $allTickets = $user->getTicketsPurchased();
-
-        for($i = 0; $i < count($allTickets); $i++)
-        {
-            echo "  <tr>
-                        <td>PS10{$allTickets[$i]['Reis_id1']}</td>
-                        <td>{$allTickets[$i]['PlaceNumber']}</td>
-                    </tr>"; 
-        }
-    ?>
-
     </table>
     <h1>Готелі</h1>
-    <table border='1px'>
+    <table border='1px' id='hotelRoomsTable'>
         <tr>
-            <td>Номер рейсу</td>
-            <td>Місце</td>
+            <td>Готель</td>
+            <td>Клас кімнати</td>
         </tr>
-
-    <?php
-        $allTickets = $user->getTicketsPurchased();
-
-        for($i = 0; $i < count($allTickets); $i++)
-        {
-            echo "  <tr>
-                        <td>PS10{$allTickets[$i]['Reis_id1']}</td>
-                        <td>{$allTickets[$i]['PlaceNumber']}</td>
-                    </tr>"; 
-        }
-    ?>
-
     </table>
     
     <div class="infoDivContainer <?= $class ?>">

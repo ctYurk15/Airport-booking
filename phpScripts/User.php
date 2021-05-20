@@ -32,7 +32,12 @@
         {
             $userID = $this->getColumn('id');
             
-            $query = "INSERT INTO ticket(PlaceNumber, User_id, Reis_id1) VALUES({$place}, {$userID}, {$reisID})";
+            //creating new ticked
+            $query = "INSERT INTO ticket(PlaceNumber, User_id, Reis_id1) VALUES({$place}+1, {$userID}, {$reisID})";
+            $this->conn->query($query);
+            
+            //adding +1 to reservation
+            $query = "UPDATE reis SET ReservedCount = ReservedCount+1 WHERE id={$reisID}";
             $this->conn->query($query);
         }
         
@@ -54,13 +59,32 @@
             return $tickets;
         }
         
-        
         public function orderRoom($roomID)
         {
             $userID = $this->getColumn('id');
             
             $query = "UPDATE rooms SET User_id={$userID} WHERE id={$roomID}";
             $this->conn->query($query);
+        }
+        
+        public function getRoomsReserved()
+        {
+            $rooms = [];
+            $query = "  SELECT roomtype.Name AS roomtypeName, hotel.Name AS hotelName
+                        FROM rooms
+                        JOIN hotel ON hotel.id = rooms.Hotel_id
+                        JOIN roomtype ON roomtype.idRoomtype = rooms.Roomtype_idRoomtype
+                        JOIN `user` ON `user`.id = rooms.User_id
+                        WHERE `user`.email = '{$this->email}'";
+            
+            $result = $this->conn->query($query);
+            
+            while($row = $result->fetch_array())
+            {
+                $rooms[count($rooms)] = $row;
+            }
+            return $rooms;
+            
         }
         
         

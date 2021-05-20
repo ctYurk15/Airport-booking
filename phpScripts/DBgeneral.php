@@ -40,12 +40,13 @@
         public function getRooms($hotel, $roomtype)
         {
             $result = $this->conn->query("  SELECT city.Name AS cityName, hotel.Name AS hotelName, roomtype.Name AS roomtypeName, 
-                                            rooms.CountRooms AS CountRooms, rooms.CountUsers AS CountUsers
+                                            rooms.CountRooms AS CountRooms, rooms.CountUsers AS CountUsers, rooms.id AS idRoom
                                             FROM rooms
                                             JOIN roomtype ON roomtype.idRoomtype = rooms.Roomtype_idRoomtype
                                             JOIN hotel ON rooms.Hotel_id = hotel.id
                                             JOIN city ON hotel.City_id = city.id
-                                            WHERE hotel.Name = '{$hotel}' AND roomtype.Name = '{$roomtype}'"); 
+                                            WHERE hotel.Name = '{$hotel}' AND roomtype.Name = '{$roomtype}'
+                                            AND rooms.User_id IS NULL"); 
             $hotels = [];
             
             while($row = $result->fetch_array()) 
@@ -59,11 +60,12 @@
         public function getAllRooms()
         {
             $result = $this->conn->query("  SELECT city.Name AS cityName, hotel.Name AS hotelName, roomtype.Name AS roomtypeName, 
-                                            rooms.CountRooms AS CountRooms, rooms.CountUsers AS CountUsers
+                                            rooms.CountRooms AS CountRooms, rooms.CountUsers AS CountUsers, rooms.id AS idRoom
                                             FROM rooms
                                             JOIN roomtype ON roomtype.idRoomtype = rooms.Roomtype_idRoomtype
                                             JOIN hotel ON rooms.Hotel_id = hotel.id
-                                            JOIN city ON hotel.City_id = city.id"); 
+                                            JOIN city ON hotel.City_id = city.id
+                                            WHERE rooms.User_id IS NULL"); 
             $hotels = [];
             
             while($row = $result->fetch_array()) 

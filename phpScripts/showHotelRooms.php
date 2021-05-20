@@ -26,7 +26,7 @@
                     <th>{$rooms[$i]['roomtypeName']}</th>
                     <th>{$rooms[$i]['CountRooms']}</th>
                     <th>{$rooms[$i]['CountUsers']}</th>
-                    <th><button>Замовити</button></th>
+                    <th><button data-idRoom='{$rooms[$i]['idRoom']}' class='reserveRoom'>Замовити</button></th>
                 </tr>";
     }
 ?>

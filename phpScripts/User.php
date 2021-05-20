@@ -55,6 +55,15 @@
         }
         
         
+        public function orderRoom($roomID)
+        {
+            $userID = $this->getColumn('id');
+            
+            $query = "UPDATE rooms SET User_id={$userID} WHERE id={$roomID}";
+            $this->conn->query($query);
+        }
+        
+        
         //all users functions
         public static function addNewUser($name, $email, $pass, $conn)
         {

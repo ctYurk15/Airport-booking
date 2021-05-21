@@ -35,7 +35,7 @@
                         <ul class="nav navbar-nav">
                             <li role="presentation"><a class="vlad" href="Flights.php">Купити квитки</a></li>
                             <li role="presentation"><a class="vlad" href="#">Орендувати готель</a></li>
-                            <li role="presentation"><a class="vlad" href="#">Приватні рейси</a></li>
+                            <li role="presentation"><a class="vlad" href="private.html">Приватні рейси</a></li>
                             <li role="presentation"><a class="vlad" href="account.html">Аккаунт</a></li>
                         </ul>
                         <!--<p class="navbar-text navbar-right actions"><a class="navbar-link login" href="#">Log In</a> 

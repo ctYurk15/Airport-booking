@@ -70,7 +70,7 @@
     
         function getColumn($column, $table, $condition, $conn)
         {
-            $query = "SELECT {$column} FROM {$table} WHERE {$condition}";
+            $query = "SELECT {$column} FROM `{$table}` WHERE {$condition}";
             //echo $query;
             
             $result = $conn->query($query)->fetch_array()[$column];
@@ -80,7 +80,7 @@
     
         function updateColumn($column, $table, $value, $condition, $conn)
         {
-            $query = "UPDATE {$table} SET {$column} = {$value} WHERE {$condition}";
+            $query = "UPDATE `{$table}` SET {$column} = {$value} WHERE {$condition}";
             //echo $query;
             
             $result = $conn->query($query);
@@ -88,9 +88,19 @@
             return $result;
         }
     
-        function addColumn($columns, $values, $table, $conn)
+        function addRow($columns, $values, $table, $conn)
         {
             $query = "INSERT INTO `{$table}`({$columns}) VALUES($values)";
+            //echo $query;
+            
+            $result = $conn->query($query);
+            
+            return $result;
+        }
+    
+        function deleteRow($idcolumn, $id, $table, $conn)
+        {
+            $query = "DELETE FROM `{$table}` WHERE {$idcolumn}={$id}";
             //echo $query;
             
             $result = $conn->query($query);
@@ -100,7 +110,7 @@
         
         
         //do we have a permission to use adminka?
-        $hasPermission = getColumn('admin', '`user`', "email = '{$_COOKIE['email']}'", $conn);
+        $hasPermission = getColumn('admin', 'user', "email = '{$_COOKIE['email']}'", $conn);
         
         //how many passport requests we have
         $passport_requests_count = getColumn('COUNT(*)', 'passport_request', 'Confirmed IS NULL', $conn);
@@ -132,7 +142,7 @@
                 
             if($passportRequestConfirm) //if we need to CONFIRM passport
             {
-                $result = $result && updateColumn('passId', '`user`', "'{$newPassId}'", "id = {$user_id_request}", $conn);
+                $result = $result && updateColumn('passId', 'user', "'{$newPassId}'", "id = {$user_id_request}", $conn);
             }
             
             $resultMsg = ""; //what we need to day to admin
@@ -160,7 +170,7 @@
             if($_POST['action'] == 'make_admin') //making new admin
             {
                 $user_id = $_POST['userID'];
-                $result = updateColumn("admin", "`user`", "1", "id = {$user_id}", $conn);
+                $result = updateColumn("admin", "user", "1", "id = {$user_id}", $conn);
             }
             //rooms
             else if($_POST['action'] == 'add_new_room') //add new room
@@ -170,14 +180,14 @@
                 $countSubRooms = $_POST['countSubRooms'];
                 $countUsers = $_POST['countUsers'];
                 
-                $result = addColumn("Hotel_id, Roomtype_idRoomtype, CountRooms, CountUsers", 
+                $result = addRow("Hotel_id, Roomtype_idRoomtype, CountRooms, CountUsers", 
                                     "{$hotelID}, {$roomtypeID}, {$countSubRooms}, {$countUsers}", 
                                     "rooms", $conn);
             }
             else if($_POST['action'] == "delete_room") //delete room
             {
                 $roomID = $_POST['roomID'];
-                echo $roomID;
+                $result = deleteRow('id', $roomID, 'rooms', $conn);
             }
             
             if($result) //if all were correct

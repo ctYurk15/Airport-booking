@@ -30,7 +30,7 @@
                             <li role="presentation"><a class="vlad" href="#">Купити квитки</a></li>
                             <li role="presentation"><a class="vlad" href="hotels.php">Орендувати готель</a></li>
                             <li role="presentation"><a class="vlad" href="#">Приватні рейси</a></li>
-                            <li role="presentation"><a class="vlad" href="account.php">Аккаунт</a></li>
+                            <li role="presentation"><a class="vlad" href="account.html">Аккаунт</a></li>
                         </ul>
                         <!--<p class="navbar-text navbar-right actions"><a class="navbar-link login" href="#">Log In</a> 
                         <a class="btn btn-default action-button" role="button" href="#">Sign Up</a></p>-->

@@ -1,4 +1,49 @@
 $(document).ready(function(){
+    
+    //checking if we`re logined
+    $.ajax({
+        type: "POST",
+        url: "../phpScripts/accountAPI.php",
+        data: { action: "is_loggined"},
+        success: function(responce)
+        {
+            var receivedData = JSON.parse(responce);
+            
+            if(!receivedData.is_loggined)
+            {
+                location.replace('../index.html');
+            }
+        }
+        
+    });
+    //checking if we`re have passport set
+    $.ajax({
+        type: "POST",
+        url: "../phpScripts/accountAPI.php",
+        data: { action: "passport_status"},
+        success: function(responce)
+        {
+            var receivedData = JSON.parse(responce);
+            var statusText = $("#statusText");
+            
+            if(receivedData.confirmed == true) //if passport is already set
+            {
+                statusText.html("Ваш аккаунт успішно верифіковано.<br> Ваш паспорт - "+receivedData.passId);
+                $("#purchaseDiv").removeClass("hidden");
+            }
+            else if(receivedData.confirmed == false)
+            {
+                statusText.html("Ваші дані були введені невірно. Введіть їх будь ласка заново");
+            }
+            else if(receivedData.confirmed == null)
+            {
+                 statusText.html("Ваш запит все ще обробляється. Будь ласка, зачекайте");
+            }
+        }
+        
+    });
+    
+    //sending password request
     $("#passIdForm").submit(function(event){
         event.preventDefault();
         
@@ -22,7 +67,7 @@ $(document).ready(function(){
     //purchase info
     $.ajax({ //tickets
             type: "POST",
-            url: '../phpScripts/accountScripts.php',
+            url: '../phpScripts/accountAPI.php',
             data: {action: "get_tickets"},
             success: function(response)
             {
@@ -46,7 +91,7 @@ $(document).ready(function(){
     
     $.ajax({ //rooms
             type: "POST",
-            url: '../phpScripts/accountScripts.php',
+            url: '../phpScripts/accountAPI.php',
             data: {action: "hotel_rooms"},
             success: function(response)
             {

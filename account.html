@@ -1,44 +1,3 @@
-<?php
-    include 'phpScripts/dbconnect.php';
-    include 'phpScripts/generalScripts.php';
-    include 'phpScripts/User.php';
-    include 'phpScripts/DBgeneral.php';
-
-    if(!isset($_COOKIE['email'])) //if user already logined
-    {
-        gotoURL("../index.html"); 
-    }
-
-    $user = new User($conn, $_COOKIE['email']);
-    $dbgeneral = new DBgeneral($conn);
-
-    $userID = $user->getColumn('id');
-
-    $class = "";
-    $Confirmed = $dbgeneral->getColumn('Confirmed', 'passport_request', 'User_Id', $userID);
-    $status = "";
-
-    if($dbgeneral->getColumn('id', 'passport_request', 'User_Id', $userID) != null) //if we don`t need passport request
-    {
-        $class = "hidden";
-    }
-    
-    if($Confirmed == null) //if request is still processing
-    {
-        $status = "Ваш запит все ще обробляється. Будь ласка, зачекайте";
-    }
-    else if($Confirmed) //if account is verified
-    {
-        $passId = $dbgeneral->getColumn('PassId', '`user`', 'id', $userID);
-        $status = "Ваш аккаунт успішно верифіковано.<br> Ваш паспорт - {$passId}";
-    }
-    else if(!$Confirmed) //if something went wrong
-    {
-        $status = "Ваші дані були введені невірно. Введіть їх будь ласка заново";
-        $class = "";
-    }
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -74,22 +33,24 @@
         </div>
     </header>
     <a href="phpScripts/unloginScript.php">Вийти з аккаунту</a>
-    <h1>Квитки</h1>
-    <table border='1px' id='ticketsTable'>
-        <tr>
-            <td>Номер рейсу</td>
-            <td>Місце</td>
-        </tr>
-    </table>
-    <h1>Готелі</h1>
-    <table border='1px' id='hotelRoomsTable'>
-        <tr>
-            <td>Готель</td>
-            <td>Клас кімнати</td>
-        </tr>
-    </table>
+    <div id="purchaseDiv" class="hidden">
+        <h1>Квитки</h1>
+        <table border='1px' id='ticketsTable'>
+            <tr>
+                <td>Номер рейсу</td>
+                <td>Місце</td>
+            </tr>
+        </table>
+        <h1>Готелі</h1>
+        <table border='1px' id='hotelRoomsTable'>
+            <tr>
+                <td>Готель</td>
+                <td>Клас кімнати</td>
+            </tr>
+        </table>
+    </div>
     
-    <div class="infoDivContainer <?= $class ?>">
+    <div class="infoDivContainer hidden" id='passportRequestDiv'>
       <h1>Passport Info</h1>
       <form action="/" method="post" id='passIdForm'>
         <div class="toCenter">
@@ -157,7 +118,7 @@
       </form>
        
     </div>
-    <h2 id='statusText'><?= $status ?></h2>
+    <h2 id='statusText'></h2>
     <h3 id='errorText'></h3>
     
     <footer id="footer">

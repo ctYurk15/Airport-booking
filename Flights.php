@@ -81,10 +81,11 @@
             <div class="fromToDate">
                 <label for="airport">ДАТА ВИЛЬОТУ *</label><br>
                 <select id='time'>
-                    <option value="today" data-uniqid="selectbox2-0">Будь-коли</option>
-                    <option value="tomorrow" data-uniqid="selectbox2-1">Завтра</option>
-                    <option value="11.05.21" data-uniqid="selectbox2-2">11.05.21</option>
-                    <option value="12.05.21" data-uniqid="selectbox2-3">12.05.21</option>
+                    <option value="today">Цього дня</option>
+                    <option value="tomorrow">Завтра</option>
+                    <option value="week">Цього тижня</option>
+                    <option value="month">Цього місяця</option>
+                    <option value="null" selected>Будь-коли</option>
                 </select>
             </div>
             

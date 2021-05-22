@@ -26,6 +26,7 @@ $(document).ready(function(){
     {   
         var from = $("#fromCity").val();
         var to = $("#toCity").val();
+        var time = $("#time").val();
         
         if(from != undefined || to != undefined)
         {
@@ -33,11 +34,13 @@ $(document).ready(function(){
             $("#availableFlights").load('../phpScripts/showFlights.php', {
                 from: from,
                 to: to,
+                time: time,
                 available: 1
             }, function(){
                 $("#inAirFlights").load('../phpScripts/showFlights.php', {
                     from: from,
                     to: to,
+                    time: time,
                     available: 0
                 }, function(){
                     //binding buttons

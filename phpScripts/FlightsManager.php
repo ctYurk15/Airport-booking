@@ -9,10 +9,10 @@
             $this->conn = $conn;
         }
         
-        public function getAllFlights($available = true, $fromCity = null, $toCity = null)
+        public function getAllFlights($available = true, $fromCity = null, $toCity = null, $time = null)
         {
             $request = "SELECT cF.Name AS cFName, cT.Name AS cTName, reis.ReisNumber AS ReisNumber,
-                        CAST(reis.ReisTimeFrom AS TIME) AS fromTime, CAST(reis.ReisTimeTo AS TIME) AS toTime 
+                        reis.ReisTimeFrom AS fromTime, reis.ReisTimeTo AS toTime 
                         FROM reis
                         JOIN airport AS aF ON reis.Airport_idAirportFrom = aF.idAirport
                         JOIN airport AS aT ON reis.Airport_idAirportTo = aT.idAirport
@@ -37,9 +37,28 @@
             {
                 $request .= " AND cF.Name = '{$fromCity}'";
             }
-            if($toCity != null && $toCity != 'null' )
+            if($toCity != null && $toCity != 'null')
             {
                 $request .= " AND cT.Name = '{$toCity}'";
+            }
+            if($time != null && $time != 'null')
+            {
+                if($time == 'today')
+                {
+                    $request .= " AND(date(reis.reisTimeFrom) = date(NOW()) OR date(reis.ReisTimeTo) = date(NOW()))";
+                }
+                else if($time == 'tomorrow')
+                {
+                    $request .= " AND(date(reis.reisTimeFrom)-1 = date(NOW()) OR date(reis.ReisTimeTo)-1 = date(NOW()))";
+                }
+                else if($time == 'week')
+                {
+                    $request .= " AND(EXTRACT(WEEK FROM ReisTimeFrom) = EXTRACT(WEEK FROM NOW()) OR EXTRACT(WEEK FROM ReisTimeTo) = EXTRACT(WEEK FROM NOW()))";
+                }
+                else if($time == 'month')
+                {
+                    $request .= " AND(EXTRACT(MONTH FROM ReisTimeFrom) = EXTRACT(MONTH FROM NOW()) OR EXTRACT(MONTH FROM ReisTimeTo) = EXTRACT(MONTH FROM NOW()))";
+                }
             }
             
             //echo $request;

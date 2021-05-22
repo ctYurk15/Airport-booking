@@ -8,11 +8,12 @@
 
     $fromCity = $_POST['from'];
     $toCity = $_POST['to'];
+    $time = $_POST['time'];
     $available = ($_POST['available']);
     
     //echo $fromCity." ".$toCity;
 
-    $result = $flightsManager->getAllFlights($available, $fromCity, $toCity);
+    $result = $flightsManager->getAllFlights($available, $fromCity, $toCity, $time);
                 
     for($i = 0; $i < count($result); $i++)
     {

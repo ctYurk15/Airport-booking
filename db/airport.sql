@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3307
--- Час створення: Трв 21 2021 р., 16:13
+-- Час створення: Трв 22 2021 р., 13:05
 -- Версія сервера: 10.1.44-MariaDB
 -- Версія PHP: 7.3.26
 
@@ -197,13 +197,14 @@ CREATE TABLE `reis` (
 --
 
 INSERT INTO `reis` (`id`, `ReisNumber`, `ReservedCount`, `ReisTimeFrom`, `ReisTimeTo`, `Plane_id`, `Airport_idAirportFrom`, `Airport_idAirportTo`, `Price`) VALUES
-(1, 1, '1', '2021-05-09 14:30:00', '2021-05-09 14:30:00', 1, 1, 1, 1),
 (1, 1, '13', '2019-10-10 14:25:00', '2019-10-10 20:25:00', 1, 1, 2, 100),
 (2, 2, '14', '2021-05-15 14:30:00', '2021-05-16 00:25:00', 2, 3, 6, 200),
 (3, 3, '53', '2021-12-13 15:25:00', '2021-12-14 01:25:00', 3, 8, 7, 300),
 (4, 4, '102', '2021-01-11 16:25:00', '2021-01-12 02:25:00', 4, 7, 2, 100),
 (5, 5, '3', '2021-11-09 17:25:00', '2021-11-10 03:25:00', 5, 7, 4, 400),
-(6, 6, '1', '2021-03-20 18:25:00', '2021-03-21 04:25:00', 6, 1, 5, 100);
+(6, 6, '1', '2021-03-20 18:25:00', '2021-03-21 04:25:00', 6, 1, 5, 100),
+(8, 7, '228', '2021-05-15 14:30:00', '2021-10-16 16:30:00', 1, 1, 2, 450),
+(9, 1, '1', '2021-05-09 14:30:00', '2021-05-09 14:30:00', 1, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -457,6 +458,12 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT для таблиці `airport`
+--
+ALTER TABLE `airport`
+  MODIFY `idAirport` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
 -- AUTO_INCREMENT для таблиці `city`
 --
 ALTER TABLE `city`
@@ -467,6 +474,12 @@ ALTER TABLE `city`
 --
 ALTER TABLE `passport_request`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT для таблиці `reis`
+--
+ALTER TABLE `reis`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT для таблиці `rooms`

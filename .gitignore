@@ -3,3 +3,4 @@
 bootstrap/
 storage/
 vendor/
+node_modules/

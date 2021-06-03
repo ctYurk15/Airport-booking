@@ -1,21 +1,7 @@
 $(document).ready(function(){
     
-    //checking if we`re logined
-    $.ajax({
-        type: "POST",
-        url: "../phpScripts/accountAPI.php",
-        data: { action: "is_loggined"},
-        success: function(responce)
-        {
-            var receivedData = JSON.parse(responce);
-            
-            if(!receivedData.is_loggined)
-            {
-                location.replace('../index.html');
-            }
-        }
-        
-    });
+     $("#errorText").load("../phpScripts/checkCookie.php", {unsetUrl: "index.html"});
+    
     //checking if we`re have passport set
     $.ajax({
         type: "POST",

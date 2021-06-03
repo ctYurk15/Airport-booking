@@ -28,7 +28,7 @@
                     <div class="collapse navbar-collapse" id="navcol-1">
                         <ul class="nav navbar-nav">
                             <li role="presentation"><a class="vlad" href="#">Купити квитки</a></li>
-                            <li role="presentation"><a class="vlad" href="hotels.php">Орендувати готель</a></li>
+                            <li role="presentation"><a class="vlad" href="hotels.html">Орендувати готель</a></li>
                             <li role="presentation"><a class="vlad" href="private.html">Приватні рейси</a></li>
                             <li role="presentation"><a class="vlad" href="account.html">Аккаунт</a></li>
                         </ul>

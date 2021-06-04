@@ -13,5 +13,5 @@ $(document).ready(function(){
     });
     
     //if user aleady is logined
-    $("#errorText").load("../phpScripts/checkCookie.php", {setUrl: "Flights.php"});
+    $("#errorText").load("../phpScripts/checkCookie.php", {setUrl: "Flights.html"});
 });

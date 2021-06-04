@@ -3,18 +3,6 @@ $(document).ready(function(){
     $("#errorText").load("../phpScripts/checkCookie.php", {unsetUrl: "index.html"});
     updateTables();
     
-    //filling select tags
-    //$('#select').append($('<option>', {value:1, text:'One'}));
-    /*$.ajax({
-        url: "../phpScripts/flightsScript.php",
-        type: 'POST',       // You are sending classic $_POST vars.
-        data: null,
-        dataType: 'JSON',  // You are receiving JSON as the response
-        success: function(result) {
-            console.log(result);
-        }
-    });*/
-    
     //filters
     $("#filterForm").submit(function(event){
         event.preventDefault();
@@ -52,7 +40,30 @@ $(document).ready(function(){
         }
     }
     
-    
-    
+    //get info for filters
+    $.ajax({
+        url: "../phpScripts/flightsAPI.php",
+        type: "POST",
+        data: {
+            action: "get_cities"
+        },
+        success: function(data){
+            var receivedData = JSON.parse(data);
+            //console.log(receivedData);
+            
+            //objects we`ll be working with
+            var fromCitySelect = $("#fromCity");
+            var toCitySelect = $("#toCity");
+            
+            //appending selects with cities we got from server
+            receivedData.forEach(function(city){
+                fromCitySelect.append("<option value='"+city.cityName+"'>"+city.cityName+"</option>");
+                toCitySelect.append("<option value='"+city.cityName+"'>"+city.cityName+"</option>");
+            });
+        },
+        error: function(data){
+            console.log(data);
+        }
+    });
     
 });

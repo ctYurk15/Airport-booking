@@ -9,7 +9,7 @@
 
     if(User::correctLogin($email, $pass, $conn))
     {
-        gotoURL("phpScripts/createCookie.php?email={$email}&page=Flights.php");
+        gotoURL("phpScripts/createCookie.php?email={$email}&page=Flights.html");
     }
     else
     {

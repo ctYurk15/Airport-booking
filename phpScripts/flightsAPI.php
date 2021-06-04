@@ -1,25 +1,18 @@
 <?php
 
-    include 'DBgeneral.php';
     include 'dbconnect.php';
+    include 'generalScripts.php';
+    include 'DBgeneral.php';
 
     $dbgeneral = new DBgeneral($conn);
 
-    //what user wants to get
-    $action = $_POST['action'];
+    $action = $_POST["action"];
 
-    $result = null;
-
-    //what we need to return
-    if($action == 'hotels_info')
+    //what info user wants to get
+    if($action == 'get_cities')
     {
-        $result = $dbgeneral->getAllHotels();
+        $result = $dbgeneral->getAllCities();
+        echo json_encode($result);
     }
-    else if($action == 'roomtypes_info')
-    {
-        $result = $dbgeneral->getRoomTypes();
-    }
-
-    echo json_encode($result);
 
 ?>

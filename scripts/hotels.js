@@ -30,7 +30,7 @@ $(document).ready(function(){
     
     //getting info about all hotels
     $.ajax({
-        url: "../phpScripts/flightsAPI.php",
+        url: "../phpScripts/hotelsAPI.php",
         type: "POST",
         data: {
             action: 'hotels_info'
@@ -54,7 +54,7 @@ $(document).ready(function(){
     
     //getting info about all roomtypes
     $.ajax({
-        url: "../phpScripts/flightsAPI.php",
+        url: "../phpScripts/hotelsAPI.php",
         type: "POST",
         data: {
             action: "roomtypes_info"

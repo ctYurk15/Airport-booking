@@ -1,0 +1,135 @@
+.headir{
+    box-shadow: 0.2em 0.4em 1em grey;
+  }
+  
+  a.vlad{
+    position: relative;
+    display: inline-block;
+    font-size: 1em;
+    font-weight: 800;
+    color: royalblue;
+    overflow: hidden;
+    background: linear-gradient(to right, midnightblue, midnightblue 50%, royalblue 50%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 100%;
+    background-position: 100%;
+    transition: background-position 275ms ease;
+    text-decoration: none;
+  }
+  a.vlad:hover {
+    background-position: 0 100%;
+  }
+  
+  }
+  .navigation-clean-button{
+    background:#fff;
+    padding-top:10px;
+    padding-bottom:10px;
+    color:#333;
+    border-radius:0;
+    box-shadow:none;
+    border:none;
+    margin-bottom:0;
+  }
+  
+  
+  .navigation-clean-button .navbar-brand{
+    font-weight:bold;
+    color:inherit;
+  }
+  
+  .navigation-clean-button .navbar-brand img{
+    height:100%;
+    display:inline-block;
+    margin-right:10px;
+    width:auto;
+  }
+  
+  
+  .navigation-clean-button .navbar-nav > li > {
+    margin-top:-5px;
+    box-shadow:0 4px 8px rgba(0,0,0,.1);
+    background-color:#fff;
+    border-radius:2px;
+  }
+  
+  .navigation-clean-button > li > a:focus, .navigation-clean-button > li > a{
+    line-height:2;
+    font-size:14px;
+    color:#37434d;
+  }
+  
+  .navigation-clean-button > li > a:focus, .navigation-clean-button  > li > a:hover{
+    background:#eee;
+    color:inherit;
+  }
+  
+  .navigation-clean-button.navbar-inverse{
+    background-color:#1f2021;
+    color:#fff;
+  }
+  
+  .navigation-clean-button.navbar-inverse .navbar-nav > .active > a, .navigation-clean-button.navbar-inverse .navbar-nav > .active > a:focus, .navigation-clean-button.navbar-inverse .navbar-nav > .active > a:hover{
+    color:#8f8f8f;
+    box-shadow:none;
+    background:none;
+    pointer-events:none;
+  }
+  
+  .navigation-clean-button.navbar-inverse .navbar-nav > li > a:focus, .navigation-clean-button.navbar-inverse .navbar-nav > li > a:hover{
+    color:#fff !important;
+    background-color:transparent;
+  }
+  
+  .navigation-clean-button .actions{
+    margin-top:7px;
+    margin-bottom:0;
+  }
+  
+  .navigation-clean-button .actions .login{
+    margin-right: 20px;
+    text-decoration:none;
+    color:#465765;
+  }
+  
+  .navigation-clean-button .action-button, .navigation-clean-button .action-button:active{
+    background:#56c6c6;
+    border-radius:20px;
+    color:#fff;
+    box-shadow:none;
+    border:none;
+    text-shadow:none;
+    padding:10px 22px;
+    transition:background-color 0.25s;
+  }
+  
+  @media (max-width:767px) {
+    .navigation-clean-button .navbar-nav .open  > li > a{
+      color:#37434d;
+      padding-top:12px;
+      padding-bottom:12px;
+      line-height:1;
+    }
+  }
+  
+  @media (max-width:767px) {
+    .navigation-clean-button{
+      padding-top:0;
+      padding-bottom:0;
+    }
+  }
+  
+  @media (max-width:767px) {
+    .navigation-clean-button .navbar-header{
+      padding-top:10px;
+      padding-bottom:10px;
+    }
+  }
+  
+  @media (max-width:767px) {
+    .navigation-clean-button .navbar-right{
+      margin-bottom:20px;
+    }
+  }

@@ -3,6 +3,11 @@
     color: red;
 }
 
+.wrongInput
+{
+    border: 1px solid red;
+}
+
 .hidden
 {
     display: none;

@@ -14,13 +14,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 //auth
-Route::get('/', function () { //login
+Route::get('/', function () { //login page
     return view('auth.login');
 })->name('login');
 
-Route::get('/reg', function () { //register
+Route::get('/reg', function () { //register page
     return view('auth.register');
 })->name('register');
+
+//login route
+Route::post('/authorize', 'App\Http\Controllers\AuthController@authorizeUser')->name('authorize');
 
 //main
 Route::get('/flights', function () { //buy ticket

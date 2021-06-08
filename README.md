@@ -18,11 +18,11 @@ and go to /adminka.php.
 
 # Technologies
 Technologies stack used here:
-Front-end: HTML/CSS/JS/JQuery, a bit bootstrap
-Back-end: PHP 
-Databases: MySQL + MySQL Workbench
-Code editor: Brackets
-Methodology: Agile
+1. Front-end: HTML/CSS/JS/JQuery, a bit bootstrap
+1. Back-end: PHP 
+1. Databases: MySQL + MySQL Workbench
+1. Code editor: Brackets
+1. Methodology: Agile
 
 # Team
 Front-end: https://github.com/PolyakovVictor

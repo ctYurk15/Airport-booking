@@ -1,7 +1,9 @@
 @extends('layouts.main_layout')
 
+@section('title', 'Аккаунт')
+
 @section('content')
-<a href="{{route('login')}}">Вийти з аккаунту</a>
+<a href="" id='unloginLink' data-route="{{route('unlogin')}}" data-route2="{{route('login')}}">Вийти з аккаунту</a>
     <div id="purchaseDiv" class="hidden">
         <h1>Квитки</h1>
         <table border='1px' id='ticketsTable'>
@@ -89,4 +91,8 @@
     </div>
     <h2 id='statusText'></h2>
     <h3 id='errorText'></h3>
+@endsection
+
+@section('custom_js')
+<script src="{{asset('js/account.js')}}"></script>
 @endsection

@@ -20,24 +20,24 @@ Route::get('/', function () { //login page
 
 Route::get('/reg', function () { //register page
     return view('auth.register');
-})->name('register');
+})->name('registration');
 
-//login route
-Route::post('/authorize', 'App\Http\Controllers\AuthController@authorizeUser')->name('authorize');
+Route::post('/authorize', 'App\Http\Controllers\AuthController@authorizeUser')->name('authorize'); //login route
+Route::post('/register', 'App\Http\Controllers\AuthController@registerUser')->name('register'); //register route
+Route::post('/loginStatus', 'App\Http\Controllers\AuthController@loginStatus')->name('loginStatus'); //check login status route
+Route::post('/unlogin', 'App\Http\Controllers\AuthController@unlogin')->name('unlogin'); //unlogin route
 
 //main
-Route::get('/flights', function () { //buy ticket
-    return view('main.flights');
-})->name('flights');
+Route::get('/flights', 'App\Http\Controllers\FlightsController@index')->name('flights'); //flights
 
-Route::get('/hotels', function () { //buy ticket
+Route::get('/hotels', function () { //hotels
     return view('main.hotels');
 })->name('hotels');
 
-Route::get('/private', function () { //buy ticket
+Route::get('/private', function () { //private reis
     return view('main.private');
 })->name('private');
 
-Route::get('/account', function () { //buy ticket
+Route::get('/account', function () { //account
     return view('main.account');
 })->name('account');

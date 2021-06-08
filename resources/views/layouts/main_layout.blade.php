@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="{{asset('css/header.css')}}">
     <link rel="stylesheet" href="{{asset('css/footer.css')}}">
     <link rel="stylesheet" href="{{asset('css/main.css')}}">
-    <title>Рейси</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>Domino - @yield('title')</title>
 </head>
 <body>
     <header>
@@ -48,8 +49,32 @@
   </footer>
 </body>
 
-<script src="{{asset('scripts/jquery.js')}}"></script>
+<script src="{{asset('js/jquery.js')}}"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://use.fontawesome.com/df966d76e1.js"></script>
+<script>
+    $(document).ready(function(){
+
+        //checking if user is loggined or not
+        $.ajax({
+            url: "{{route('loginStatus')}}",
+            type: "POST",
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function(data){
+                if(!data)
+                {
+                    location.replace("{{route('login')}}");
+                }
+            },
+            error: function(data){
+                console.log(data);
+            }
+        });
+
+    });
+</script>
+@yield('custom_js')
 
 </html>

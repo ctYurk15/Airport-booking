@@ -1,5 +1,7 @@
 @extends('layouts.main_layout')
 
+@section('title', 'Рейси')
+
 @section('content')
 <h1>Табло вильоту і прильоту</h1>
 <form action="/" method="post" id='filterForm'>
@@ -40,16 +42,23 @@
     <table class="dpt">
         <thead>
         <tr class="optr">
-                <th class="opth buyTicket">МАРШРУТ</th>
-                <th class="opth">РЕЙС №</th>
-                <th class="opth">ЧАС ЗА РОЗКЛАДОМ</th>
-                <th class="opth">ОЧІКУЄТЬСЯ</th>
-                <th class="opth">ФАКТИЧНИЙ ЧАС</th>
-                <th class="opth">КУПИТИ КВИТОК</th>
-            </tr>
+            <th class="opth buyTicket">МАРШРУТ</th>
+            <th class="opth">РЕЙС №</th>
+            <th class="opth">ЧАС ЗА РОЗКЛАДОМ</th>
+            <th class="opth">ОЧІКУЄТЬСЯ</th>
+            <th class="opth">КУПИТИ КВИТОК</th>
+        </tr>
         </thead>
         <tbody id='availableFlights'>
-            
+            @foreach($flights as $reis)
+                <tr>
+                    <td>{{$reis->departureAirport->city->Name}} - {{$reis->arrivalAirport->city->Name}}</td>
+                    <td>PS10{{$reis->id}}</td>
+                    <td>{{$reis->ReisTimeFrom}}</td>
+                    <td>{{$reis->ReisTimeTo}} </td>
+                    <td><buton>КУПИТИ КВИТОК</button></td>
+                </tr>
+            @endforeach
         </tbody>
     </table>
     <h3 id='errorText'></h3>

@@ -35,7 +35,7 @@
         <h3 id='errorText'></h3>
 
         <div class = "registration">
-            <a href="{{route('register')}}">Реєстрація</a>
+            <a href="{{route('registration')}}">Реєстрація</a>
         </div>
     </div><!-- tab-content -->
 </div>

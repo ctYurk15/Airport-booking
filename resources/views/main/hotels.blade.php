@@ -1,5 +1,7 @@
 @extends('layouts.main_layout')
 
+@section('title', 'Готелі')
+
 @section('content')
 <h1>Готелі</h1>
     

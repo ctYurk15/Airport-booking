@@ -29,14 +29,14 @@ $(document).ready(function(){
                 if(!data.correct_email)
                 {
                     $("#emailInp").addClass("wrongInput");
-                    errorText.append("Ваша пошта невірна");
+                    errorText.append("Ваша пошта невірна <br>");
                 }
 
                 //if pass was not correct
                 if(data.correct_email && !data.correct_pass)
                 {
                     $("#passInp").addClass("wrongInput");
-                    errorText.append("Ваш пароль невірний");
+                    errorText.append("Ваш пароль невірний <br>");
                 }
                 
                 //if authorization were correct

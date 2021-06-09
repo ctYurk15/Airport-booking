@@ -25,4 +25,12 @@ Technologies stack used here:
 1. Methodology: Agile
 
 # Team
-Front-end: https://github.com/PolyakovVictor
+Front-end: 
+1. https://github.com/PolyakovVictor
+1. https://github.com/Hromovik123
+1. https://github.com/VladBrendak
+1. https://github.com/TheUuni
+
+Content: https://github.com/Hromovik123
+
+Back-end: https://github.com/ctYurk15

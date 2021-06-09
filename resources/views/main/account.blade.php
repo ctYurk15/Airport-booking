@@ -2,26 +2,16 @@
 
 @section('title', 'Аккаунт')
 
+@section('custom_css')
+<link rel="stylesheet" href="{{asset('css/account.css')}}"></link>
+@endsection
+
 @section('content')
-<a href="" id='unloginLink' data-route="{{route('unlogin')}}" data-route2="{{route('login')}}">Вийти з аккаунту</a>
-    <div id="purchaseDiv" class="hidden">
-        <h1>Квитки</h1>
-        <table border='1px' id='ticketsTable'>
-            <tr>
-                <td>Номер рейсу</td>
-                <td>Місце</td>
-            </tr>
-        </table>
-        <h1>Готелі</h1>
-        <table border='1px' id='hotelRoomsTable'>
-            <tr>
-                <td>Готель</td>
-                <td>Клас кімнати</td>
-            </tr>
-        </table>
-    </div>
-    
-    <div class="infoDivContainer hidden" id='passportRequestDiv'>
+@if(!is_null($user))
+  <a href="" id='unloginLink' data-route="{{route('unlogin')}}" data-route2="{{route('login')}}">Вийти з аккаунту</a>
+
+  @if(is_null($user->PassId) && (is_null($user->passport_request) || (!$user->passport_request->Confirmed && !is_null($user->passport_request->Confirmed))))
+    <div class="infoDivContainer" id='passportRequestDiv'>
       <h1>Passport Info</h1>
       <form action="/" method="post" id='passIdForm'>
         <div class="toCenter">
@@ -84,13 +74,40 @@
         </div>
         <div>
           <button type="submit" class="button button-block">Відправити</button>
-         
+          
         </div>
       </form>
-       
+        
     </div>
-    <h2 id='statusText'></h2>
-    <h3 id='errorText'></h3>
+    @if(!is_null($user->passport_request) && !$user->passport_request->Confirmed)
+      <h2 id='statusText'>Ваш запит було відхилено. Спробуйте ще раз</h2>
+    @endif
+  @elseif(!is_null($user->passport_request) && is_null($user->passport_request->Confirmed))
+    <h2 id='statusText'>Ваш запит ще обробляється</h2>
+  @elseif(!is_null($user->PassId) && $user->passport_request->Confirmed)
+    <div id="purchaseDiv"
+        <h1>Квитки</h1>
+        <table border='1px' id='ticketsTable'>
+            <tr>
+                <td>Номер рейсу</td>
+                <td>Місце</td>
+            </tr>
+        </table>
+        <h1>Готелі</h1>
+        <table border='1px' id='hotelRoomsTable'>
+            <tr>
+                <td>Готель</td>
+                <td>Клас кімнати</td>
+            </tr>
+        </table>
+    </div>
+    <h1>
+      Ваш аккаунт успішно верифіковано.<br> 
+      ID вашого паспорта: {{$user->PassId}}
+    </h1>
+  @endif
+  <h3 id='errorText'></h3>
+@endif
 @endsection
 
 @section('custom_js')

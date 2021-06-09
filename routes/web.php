@@ -28,16 +28,12 @@ Route::post('/loginStatus', 'App\Http\Controllers\AuthController@loginStatus')->
 Route::post('/unlogin', 'App\Http\Controllers\AuthController@unlogin')->name('unlogin'); //unlogin route
 
 //main
-Route::get('/flights', 'App\Http\Controllers\FlightsController@index')->name('flights'); //flights
+Route::get('/flights', 'App\Http\Controllers\FlightsController@index')->name('flights'); //flights page
 
-Route::get('/hotels', function () { //hotels
-    return view('main.hotels');
-})->name('hotels');
+Route::get('/hotels', 'App\Http\Controllers\HotelsController@index')->name('hotels'); //hotels page
 
-Route::get('/private', function () { //private reis
+Route::get('/private', function () { //private reis page
     return view('main.private');
 })->name('private');
 
-Route::get('/account', function () { //account
-    return view('main.account');
-})->name('account');
+Route::get('/account', 'App\Http\Controllers\AccountController@index')->name('account'); //account page

@@ -10,14 +10,20 @@
             <div class="fromToDate">
                 <label for="from_to">ГОТЕЛЬ *</label><br>
                 <select id='hotel'>
-                    
+                    <option value='null' selected>Будь-який</option>
+                    @foreach($hotels as $hotel)
+                        <option value='{{$hotel->Name}}'>{{$hotel->Name}} - {{$hotel->city->Name}}</option>
+                    @endforeach
                 </select>
             </div>
 
             <div class="fromToDate">
                 <label for="airport">КЛАС КІМНАТИ *</label><br>
                 <select id='class'>
-                    
+                    <option value='null' selected>Будь-який</option>
+                    @foreach($roomtypes as $roomtype)
+                        <option value='{{$roomtype->Name}}'>{{$roomtype->Name}}</option>
+                    @endforeach
                 </select>
             </div>
             <div class="show_button">
@@ -35,11 +41,18 @@
                     <th class="opth">КЛАС</th>
                     <th class="opth">КІМНАТ</th>
                     <th class="opth">МІСТКІСТЬ</th>
-                    <th class="opth"></th>
                 </tr>
             </thead>
             <tbody id='rooms'>
-                
+                @foreach($rooms as $room)
+                    <tr>
+                        <th>{{$room->hotel->city->Name}}</th>
+                        <th>{{$room->hotel->Name}}</th>
+                        <th>{{$room->roomtype->Name}}</th>
+                        <th>{{$room->CountRooms}}</th>
+                        <th>{{$room->CountUsers}}</th>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
     </div>

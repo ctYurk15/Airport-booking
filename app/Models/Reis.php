@@ -12,6 +12,7 @@ class Reis extends Model
     use HasFactory;
 
     protected $table = "reis";
+    protected $dates = ['ReisTimeFrom', 'ReisTimeTo'];
 
     public function departureAirport()
     {

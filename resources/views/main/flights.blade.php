@@ -9,78 +9,96 @@
         <div class="fromToDate">
             <label for="airport">ЗВІДКИ *</label><br>
             <select id='fromCity'>
-                <option value='null' selected>Будь-де</option>
+                <option value='any' selected>Будь-де</option>
+                @foreach($cities as $city)
+                    <option value="{{$city->Name}}">{{$city->Name}}</option>
+                @endforeach
             </select>
         </div>
 
         <div class="fromToDate">
             <label for="from_to">КУДИ *</label><br>
             <select id='toCity'>
-                <option value='null' selected>Будь-куди</option>
+                <option value='any' selected>Будь-куди</option>
+                @foreach($cities as $city)
+                    <option value="{{$city->Name}}">{{$city->Name}}</option>
+                @endforeach
             </select>
         </div>
 
         <div class="fromToDate">
             <label for="airport">ДАТА ВИЛЬОТУ *</label><br>
             <select id='time'>
+                <option value="any" selected>Будь-коли</option>
                 <option value="today">Цього дня</option>
                 <option value="tomorrow">Завтра</option>
                 <option value="week">Цього тижня</option>
                 <option value="month">Цього місяця</option>
-                <option value="null" selected>Будь-коли</option>
             </select>
         </div>
         
     </div>
-    <input type='submit' class='button' value='Показати'>
+    <input type='submit' class='button' value='Показати' data-route="{{route('flights')}}" id="submitButton">
 </form><br>
 
-<div class="depart">
-    <div class="text-center">
-        <i>ВИЛІТ</i>
-    </div>
-    <table class="dpt">
-        <thead>
-        <tr class="optr">
-            <th class="opth buyTicket">МАРШРУТ</th>
-            <th class="opth">РЕЙС №</th>
-            <th class="opth">ЧАС ЗА РОЗКЛАДОМ</th>
-            <th class="opth">ОЧІКУЄТЬСЯ</th>
-            <th class="opth">КУПИТИ КВИТОК</th>
-        </tr>
-        </thead>
-        <tbody id='availableFlights'>
-            @foreach($flights as $reis)
-                <tr>
-                    <td>{{$reis->departureAirport->city->Name}} - {{$reis->arrivalAirport->city->Name}}</td>
-                    <td>PS10{{$reis->id}}</td>
-                    <td>{{$reis->ReisTimeFrom}}</td>
-                    <td>{{$reis->ReisTimeTo}} </td>
-                    <td><buton>КУПИТИ КВИТОК</button></td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
-    <h3 id='errorText'></h3>
-</div>
-
-<div class="arrival">
-    <div class="text-center">
-        <i>ПРИЛІТ</i>
-    </div>
-    <table class="arrt">
-        <thead>
+<div id='flightsTable'>
+    <div class="depart">
+        <div class="text-center">
+            <i>ВИЛІТ</i>
+        </div>
+        <table class="dpt">
+            <thead>
             <tr class="optr">
-                <th class="opth">МАРШРУТ</th>
+                <th class="opth buyTicket">МАРШРУТ</th>
                 <th class="opth">РЕЙС №</th>
                 <th class="opth">ЧАС ЗА РОЗКЛАДОМ</th>
                 <th class="opth">ОЧІКУЄТЬСЯ</th>
-                <th class="opth">ФАКТИЧНИЙ ЧАС</th>
+                <th class="opth">КУПИТИ КВИТОК</th>
             </tr>
-        </thead>
-        <tbody id='inAirFlights'>
-            
-        </tbody>
-    </table>
+            </thead>
+            <tbody id='availableFlights'>
+                @foreach($available_flights as $reis)
+                    <tr>
+                        <th>{{$reis->departureAirport->city->Name}} - {{$reis->arrivalAirport->city->Name}}</th>
+                        <th>PS10{{$reis->id}}</th>
+                        <th>{{$reis->ReisTimeFrom}}</th>
+                        <th>{{$reis->ReisTimeTo}} </th>
+                        <th><button>Купити квиток</button></th>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+        <h3 id='errorText'></h3>
+    </div>
+
+    <div class="arrival">
+        <div class="text-center">
+            <i>ПРИЛІТ</i>
+        </div>
+        <table class="arrt">
+            <thead>
+                <tr class="optr">
+                    <th class="opth">МАРШРУТ</th>
+                    <th class="opth">РЕЙС №</th>
+                    <th class="opth">ЧАС ЗА РОЗКЛАДОМ</th>
+                    <th class="opth">ОЧІКУЄТЬСЯ</th>
+                </tr>
+            </thead>
+            <tbody id='inAirFlights'>
+                @foreach($arriving_flights as $reis)
+                    <tr>
+                        <th>{{$reis->departureAirport->city->Name}} - {{$reis->arrivalAirport->city->Name}}</th>
+                        <th>PS10{{$reis->id}}</th>
+                        <th>{{$reis->ReisTimeFrom}}</th>
+                        <th>{{$reis->ReisTimeTo}} </th>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 </div>
+@endsection
+
+@section('custom_js')
+<script src="{{asset('js/flights.js')}}"></script>
 @endsection

@@ -73,7 +73,7 @@
           
         </div>
         <div>
-          <button type="submit" class="button button-block">Відправити</button>
+          <button type="submit" class="button button-block" id="submitButton" data-route="{{route('passport_request')}}">Відправити</button>
           
         </div>
       </form>
@@ -92,6 +92,12 @@
                 <td>Номер рейсу</td>
                 <td>Місце</td>
             </tr>
+            @foreach($user->tickets as $ticket)
+              <tr>
+                  <td>{{$ticket->Reis_id1}}</td>
+                  <td>{{$ticket->PlaceNumber}}</td>
+              </tr>
+            @endforeach
         </table>
         <h1>Готелі</h1>
         <table border='1px' id='hotelRoomsTable'>
@@ -99,6 +105,12 @@
                 <td>Готель</td>
                 <td>Клас кімнати</td>
             </tr>
+            @foreach($user->rooms as $room)
+              <tr>
+                  <td>{{$room->hotel->Name}}</td>
+                  <td>{{$room->roomtype->Name}}</td>
+              </tr>
+            @endforeach
         </table>
     </div>
     <h1>

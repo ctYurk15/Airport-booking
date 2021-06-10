@@ -26,10 +26,10 @@ Route::post('/authorize', 'App\Http\Controllers\AuthController@authorizeUser')->
 Route::post('/register', 'App\Http\Controllers\AuthController@registerUser')->name('register'); //register route
 Route::post('/loginStatus', 'App\Http\Controllers\AuthController@loginStatus')->name('loginStatus'); //check login status route
 Route::post('/unlogin', 'App\Http\Controllers\AuthController@unlogin')->name('unlogin'); //unlogin route
+Route::post('/passport_request', 'App\Http\Controllers\PassportRequestController@addPR')->name('passport_request'); //KYC verification 
 
 //main
 Route::get('/flights', 'App\Http\Controllers\FlightsController@index')->name('flights'); //flights page
-
 Route::get('/hotels', 'App\Http\Controllers\HotelsController@index')->name('hotels'); //hotels page
 
 Route::get('/private', function () { //private reis page

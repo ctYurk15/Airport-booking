@@ -10,7 +10,7 @@
             <div class="fromToDate">
                 <label for="from_to">ГОТЕЛЬ *</label><br>
                 <select id='hotel'>
-                    <option value='null' selected>Будь-який</option>
+                    <option value='any' selected>Будь-який</option>
                     @foreach($hotels as $hotel)
                         <option value='{{$hotel->Name}}'>{{$hotel->Name}} - {{$hotel->city->Name}}</option>
                     @endforeach
@@ -20,14 +20,14 @@
             <div class="fromToDate">
                 <label for="airport">КЛАС КІМНАТИ *</label><br>
                 <select id='class'>
-                    <option value='null' selected>Будь-який</option>
+                    <option value='any' selected>Будь-який</option>
                     @foreach($roomtypes as $roomtype)
                         <option value='{{$roomtype->Name}}'>{{$roomtype->Name}}</option>
                     @endforeach
                 </select>
             </div>
             <div class="show_button">
-                <input type='submit' class='button' value='Показати'>
+                <input type='submit' class='button' value='Показати' data-route="{{route('hotels')}}" id="submitButton">
             </div>
         </form>
     </div>
@@ -58,4 +58,8 @@
     </div>
     
     <h3 id='errorText'></h3>
+@endsection
+
+@section('custom_js')
+<script src="{{asset('js/hotels.js')}}"></script>
 @endsection

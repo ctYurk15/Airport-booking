@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 use App\Models\PassportRequest;
+use App\Models\Tikcet;
 
 class User extends Authenticatable
 {
@@ -49,5 +50,15 @@ class User extends Authenticatable
     public function passport_request()
     {
         return $this->hasOne(PassportRequest::class, 'User_id');
+    }
+
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::class, 'User_id');
+    }
+
+    public function rooms()
+    {
+        return $this->hasMany(Room::class, 'User_id');
     }
 }

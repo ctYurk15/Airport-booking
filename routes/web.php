@@ -42,4 +42,4 @@ Route::get('/private', function () { //private reis page
 
 Route::get('/account', 'App\Http\Controllers\AccountController@index')->name('account'); //account page
 
-
+Route::get('/adminka', 'App\Http\Controllers\AccountController@adminka');

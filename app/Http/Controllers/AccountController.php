@@ -21,4 +21,11 @@ class AccountController extends Controller
             "user" => $user
         ]);
     }
+     
+    public function adminka()
+    {
+        return view('adminka', [
+            "email" => Cookie::get("email")
+        ]);
+    }
 }

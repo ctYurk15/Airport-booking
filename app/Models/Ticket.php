@@ -10,4 +10,8 @@ class Ticket extends Model
     use HasFactory;
 
     protected $table = "ticket";
+
+    protected $fillable = ['PlaceNumber', 'Reis_id1', 'User_id'];
+
+    public $timestamps = false;
 }

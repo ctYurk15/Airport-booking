@@ -75,4 +75,38 @@ $(document).ready(function(){
 
     });
 
+    //purchasing tickets
+    $(".buyButton").on("click", function(){
+
+        var reisID = $(this).attr("data-reis");
+        var url = $(this).attr("data-route");
+
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: {
+                Reis_id1: reisID
+            },
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function(data){
+                if(data.result == true)
+                {
+                    $("#errorText").text("Квиток на рейс P10"+data.reis_id+" успішно куплено!");
+                }
+                else
+                {
+                    if(data.message == 'passport_null')
+                    {
+                        $("#errorText").text("Верифікуйте свій аккаyнт для покупки квитків!");
+                    }
+                }
+            },
+            error: function(data){
+                console.log(data);
+            }
+        });
+    });
+
 });

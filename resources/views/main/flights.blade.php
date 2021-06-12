@@ -63,7 +63,7 @@
                         <th>PS10{{$reis->id}}</th>
                         <th>{{$reis->ReisTimeFrom}}</th>
                         <th>{{$reis->ReisTimeTo}} </th>
-                        <th><button>Купити квиток</button></th>
+                        <th><button data-reis="{{$reis->id}}" data-route="{{ route('purchaseTickets') }}" class="buyButton">Купити квиток</button></th>
                     </tr>
                 @endforeach
             </tbody>

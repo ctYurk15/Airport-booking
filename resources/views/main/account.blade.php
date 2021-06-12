@@ -85,7 +85,7 @@
   @elseif(!is_null($user->passport_request) && is_null($user->passport_request->Confirmed))
     <h2 id='statusText'>Ваш запит ще обробляється</h2>
   @elseif(!is_null($user->PassId) && $user->passport_request->Confirmed)
-    <div id="purchaseDiv"
+    <div id="purchaseDiv">
         <h1>Квитки</h1>
         <table border='1px' id='ticketsTable'>
             <tr>

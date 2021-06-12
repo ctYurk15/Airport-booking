@@ -12,6 +12,7 @@ class Room extends Model
     use HasFactory;
 
     protected $table = "rooms";
+    public $timestamps = false;
 
     public function hotel()
     {

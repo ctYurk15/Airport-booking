@@ -41,6 +41,7 @@
                     <th class="opth">КЛАС</th>
                     <th class="opth">КІМНАТ</th>
                     <th class="opth">МІСТКІСТЬ</th>
+                    <th class="opth"></th>
                 </tr>
             </thead>
             <tbody id='rooms'>
@@ -51,6 +52,7 @@
                         <th>{{$room->roomtype->Name}}</th>
                         <th>{{$room->CountRooms}}</th>
                         <th>{{$room->CountUsers}}</th>
+                        <th><button data-id="{{$room->id}}" data-route="{{route('purchaseRooms')}}" class="orderRoom">Забронювати</button></th>
                     </tr>
                 @endforeach
             </tbody>

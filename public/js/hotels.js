@@ -16,10 +16,8 @@ $(document).ready(function(){
         $("#class").children("[value='"+room_class+"']").prop("selected", true);
     }
 
-    $("#filtersForm").submit(function(event){
-
-        event.preventDefault();
-
+    function updateRooms()
+    {
         //getting user selected options in filter
         var hotel = $("#hotel").val();
         var room_class = $("#class").val();
@@ -54,11 +52,65 @@ $(document).ready(function(){
 
                 //forming url & pushing it
                 history.pushState({}, '', newUrl);
+
+                //refreshing js
+                reload_js('/js/hotels.js');
             },
             error: function(data){
                 console.log(data);
             }
         });
+    }
+
+    $("#filtersForm").submit(function(event){
+
+        event.preventDefault();
+
+        updateRooms();
+    });
+
+    $(".orderRoom").on("click", function(){
+
+        var url = $(this).attr("data-route");
+        var id = $(this).attr("data-id");
+
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: {
+                room_id: id
+            },
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function(data){
+                if(data.result == true)
+                {
+                    $("#errorText").text("Успішно заброньовано номер класу "+data.type+" у готелі "+data.hotel);
+
+                    //updating available rooms
+                    updateRooms();
+
+                    //refreshing js
+                    reload_js('/js/hotels.js');
+                }
+                else
+                {
+                    if(data.message == "passport_null")
+                    {
+                        $("#errorText").text("Верифікуйте свій аккаyнт для покупки квитків!");
+                    }
+                    else if(data.message == "room_booked")
+                    {
+                        $("#errorText").text("Цю кімнату уже заброньовано!");
+                    }
+                }
+            },
+            error: function(data){
+                console.log(data);
+            }
+        });
+
     });
 
 });

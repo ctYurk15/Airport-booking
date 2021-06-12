@@ -51,6 +51,7 @@
 </body>
 
 <script src="{{asset('js/jquery.js')}}"></script>
+<script src="{{asset('js/main.js')}}"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://use.fontawesome.com/df966d76e1.js"></script>
 <script>

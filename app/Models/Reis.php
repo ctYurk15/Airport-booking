@@ -13,6 +13,7 @@ class Reis extends Model
 
     protected $table = "reis";
     protected $dates = ['ReisTimeFrom', 'ReisTimeTo'];
+    public $timestamps = false;
 
     public function departureAirport()
     {

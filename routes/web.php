@@ -28,6 +28,10 @@ Route::post('/loginStatus', 'App\Http\Controllers\AuthController@loginStatus')->
 Route::post('/unlogin', 'App\Http\Controllers\AuthController@unlogin')->name('unlogin'); //unlogin route
 Route::post('/passport_request', 'App\Http\Controllers\PassportRequestController@addPR')->name('passport_request'); //KYC verification 
 
+//purchase
+Route::post('/purchaseTickets', 'App\Http\Controllers\PurchaseController@purchaseTicket')->name('purchaseTickets'); //tickets
+Route::post('/purchaseRooms', 'App\Http\Controllers\PurchaseController@purchaseRoom')->name('purchaseRooms'); //rooms
+
 //main
 Route::get('/flights', 'App\Http\Controllers\FlightsController@index')->name('flights'); //flights page
 Route::get('/hotels', 'App\Http\Controllers\HotelsController@index')->name('hotels'); //hotels page
@@ -37,3 +41,5 @@ Route::get('/private', function () { //private reis page
 })->name('private');
 
 Route::get('/account', 'App\Http\Controllers\AccountController@index')->name('account'); //account page
+
+

@@ -127,3 +127,11 @@ i
         margin-left: 5%;
     }
 }
+
+#SinoptikInformer
+{
+    width:250px; 
+    top: 10%;
+    right: 10px;
+    position: absolute;
+}

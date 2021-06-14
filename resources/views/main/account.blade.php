@@ -87,30 +87,44 @@
   @elseif(!is_null($user->PassId) && $user->passport_request->Confirmed)
     <div id="purchaseDiv">
         <h1>Квитки</h1>
-        <table border='1px' id='ticketsTable'>
-            <tr>
-                <td>Номер рейсу</td>
-                <td>Місце</td>
-            </tr>
-            @foreach($user->tickets as $ticket)
-              <tr>
-                  <td>{{$ticket->Reis_id1}}</td>
-                  <td>{{$ticket->PlaceNumber}}</td>
+        <table class="dpt">
+            <thead>
+              <tr class="optr">
+                  <th class="opth buyTicket">МАРШРУТ</th>
+                  <th class="opth">РЕЙС №</th>
+                  <th class="opth">ВИЛІТ</th>
+                  <th class="opth">ПРИБУТТЯ</th>
+                  <th class="opth">НОМЕР МІСЦЯ</th>
               </tr>
-            @endforeach
+            </thead>
+            <tbody id='availableFlights'>
+              @foreach($user->tickets as $ticket)
+                <tr>
+                  <th>PS10{{$ticket->reis->id}}</th>
+                  <th>{{$ticket->Reis_id1}}</th>
+                  <th>{{$ticket->reis->ReisTimeFrom}}</th>
+                  <th>{{$ticket->reis->ReisTimeTo}}</th>
+                  <th>{{$ticket->PlaceNumber}}</th>
+                </tr>
+              @endforeach
+            </tbody>
         </table>
         <h1>Готелі</h1>
-        <table border='1px' id='hotelRoomsTable'>
-            <tr>
-                <td>Готель</td>
-                <td>Клас кімнати</td>
-            </tr>
-            @foreach($user->rooms as $room)
-              <tr>
-                  <td>{{$room->hotel->Name}}</td>
-                  <td>{{$room->roomtype->Name}}</td>
+        <table class="dpt">
+            <thead>
+              <tr class="optr">
+                  <th class="opth buyTicket">ГОТЕЛЬ</th>
+                  <th class="opth">КЛАС КІМНАТИ</th>
               </tr>
-            @endforeach
+            </thead>
+            <tbody id='availableFlights'>
+              @foreach($user->rooms as $room)
+                <tr>
+                  <th>{{$room->hotel->Name}}</th>
+                  <th>{{$room->roomtype->Name}}</th>
+                </tr>
+              @endforeach
+            </tbody>
         </table>
     </div>
     <h1>

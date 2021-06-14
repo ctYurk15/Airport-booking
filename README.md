@@ -7,6 +7,7 @@ It has the following functionality:
 1. display of current flights divided by departing and arriving ones
 1. Simple KYC system (verification from adminka)
 1. purchasing tickets & ordering hotel rooms
+1. Real-time weather display from Sinoptik.ua
 1. Functional filters for both pages
 1. Full AJAX cover of the main functionality
 1. Adminka - a not-powerful admin tool. Its features:

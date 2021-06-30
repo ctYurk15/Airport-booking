@@ -17,3 +17,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::resource('/flights', 'App\Http\Controllers\API\API_FlightsController')->only(['index', 'show']);

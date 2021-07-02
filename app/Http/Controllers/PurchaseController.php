@@ -3,11 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Models\Reis;
 use App\Models\User;
 use App\Models\Room;
 use App\Models\Ticket;
 use Cookie;
+
+use Mail;
+use App\Mail\TicketPurchaseEmail;
+use App\Mail\RoomBookEmail;
 
 class PurchaseController extends Controller
 {
@@ -25,7 +30,10 @@ class PurchaseController extends Controller
 
             $request['User_id'] = $current_user->id;
 
-            Ticket::create($request->all());
+            $ticket = Ticket::create($request->all());
+
+            //sending email
+            Mail::send(new TicketPurchaseEmail("levgenetic@gmail.com", $ticket));
 
             return response()->json(["result" => true, 'reis_id' => $request->Reis_id1]);
         }
@@ -45,6 +53,9 @@ class PurchaseController extends Controller
                 //now this room is booked by current user
                 $current_room->User_id = $current_user->id;
                 $current_room->save();
+
+                //sending email
+                Mail::send(new RoomBookEmail("levgenetic@gmail.com", $current_room));
 
                 return response()->json(["result" => true, 'hotel' => $current_room->hotel->Name, 'type' => $current_room->roomtype->Name]);
             }
